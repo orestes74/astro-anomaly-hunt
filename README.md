@@ -14,7 +14,7 @@
 | 먼지·가스 (IRAS/Planck/Hα 비교) | 이상 구조 없음 |
 | **단일 프레임 섬광** | **M51 방향 2026-04-17 18:01 UTC, 공개·기밀 위성 목록 어디에도 맞지 않는 반사 섬광 1건** |
 
-자세한 내용은 [REPORT.md](REPORT.md), 영상 대본은 [video/script.md](video/script.md)에 있습니다.
+자세한 내용은 [REPORT.md](REPORT.md), 영상 대본은 [video/script_v2.md](video/script_v2.md)(한국어)와 [video/draft_en.srt](video/draft_en.srt)(영어 내레이션)에 있습니다.
 
 ## 미리보기
 
@@ -38,7 +38,8 @@
 | `data/` | 이번 분석의 후보 목록·로그 (JSON/CSV) |
 | `astrohunt.py`, `astrohunt/` | 자동화 프로그램 (아래 설명). `astrohunt/forensics/`는 M51 섬광 하나를 파고든 분석 스크립트 |
 | `tools/` | 영상 자료 생성 스크립트 |
-| `video/` | 영상 대본과 장면 구성 |
+| `video/` | 영상 대본, 유튜브 소개란(`description_en.txt`), 영어 자막(`draft_en.srt`) |
+| `video/build/` | 영상 자동 제작 스크립트 (아래 설명) |
 
 REPORT.md 안의 `results/...` 경로는 원래 분석 폴더 기준입니다. 이 저장소에서는 `images/`와 `data/`에 나뉘어 있습니다.
 
@@ -93,6 +94,21 @@ python astrohunt.py --retry-failed   # 예전에 실패한 세션 다시 스태�
 - 자동 판정은 1차 거르기입니다. 확인 목록의 그림은 사람이 봐야 합니다.
 - 세션 비교는 같은 대상을 두 번 이상 찍어야 가능합니다.
 - 외부 서비스(Gaia, SkyBoT, VSX, NED, SkyView)에는 하늘 좌표와 시각만 보냅니다.
+
+## 영상 제작 스크립트 `video/build/`
+
+대본 한 파일(`scenes.py`)에서 내레이션·화면·자막·배경음악을 맞춘 MP4를 만듭니다.
+
+| 파일 | 하는 일 |
+|---|---|
+| `scenes.py` | 장면 목록: 화면(사진·애니메이션·카드·모션 그래픽)과 영어 내레이션 문장 |
+| `tts.py` | 문장별 영어 음성(Kokoro) 생성, 자막용 시각 기록 |
+| `build_visuals.py` | 글자 카드·도식·사진 배치 |
+| `motion.py` | 모션 그래픽 18종 (지도 대조, 세션 나누기, 렌즈 왜곡, shift-and-stack, 지구 그림자 등) |
+| `m45.py` | 스택 보정 예시: 배경 기울기 제거 → Gaia 색 지수 기준 색 보정 → 색 보존 asinh 늘리기 |
+| `assemble.py` | 장면 클립 + 내레이션 + 배경음악(내레이션 중 자동으로 작게) + 자막 → `video/draft_en.mp4`, `draft_en.srt` |
+
+순서: `tts.py` → `build_visuals.py` → `motion.py` → `assemble.py`. 직접 보정한 사진은 `ASTRO_PHOTOS` 환경변수 폴더에서 읽습니다. 영상·음악·사진은 용량과 저작권 때문에 저장소에 넣지 않았습니다.
 
 ## 사용한 도구와 데이터
 - 스태킹: Siril 1.4.5

@@ -3,7 +3,8 @@
  - 변광성 깜빡이기: 두 세션 스택을 같은 밝기 기준(측광 영점)으로 맞춰 번갈아 보기
  - M51 섬광: 앞·뒤 프레임 비교
  - 한 장 vs 스택 비교
-사용법: python make_animations.py [ast] [var] [flash] [stack]   (환경변수 HUNT_DIR = 분석 폴더)"""
+사용법: python make_animations.py [ast] [var] [flash] [stack]   (환경변수 HUNT_DIR = 분석 폴더)
+영어 라벨: ANIM_LANG=en, 저장 폴더: ANIM_OUT=<폴더>"""
 import os, sys, json, subprocess, numpy as np
 from astropy.io import fits
 from astropy.wcs import WCS
@@ -13,7 +14,9 @@ HUNT = os.environ.get('HUNT_DIR', r'C:\rasa_test\asteroid_hunt')
 RAW = os.environ.get('RAW_DIR', r'h:/asiair/Autorun/Light')
 sys.path.insert(0, os.path.join(HUNT, 'analysis'))
 import common as C, transient as T
-OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'animations')
+OUT = os.environ.get('ANIM_OUT') or os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'animations')
+EN = os.environ.get('ANIM_LANG', '').lower() == 'en'
+def tr(ko, en): return en if EN else ko
 os.makedirs(OUT, exist_ok=True)
 try:
     FONT = ImageFont.truetype(r'C:\Windows\Fonts\malgun.ttf', 18)
@@ -99,7 +102,7 @@ def variable_blink(name, ra, dec, sa, sb, half=60, step=1.5):
         im = Image.fromarray(stretch(a, -2 * s, pk)).resize((4 * half + 2,) * 2, Image.LANCZOS).convert('RGB')
         dr = ImageDraw.Draw(im); c = 2 * half + 1
         dr.line([c - 40, c, c - 18, c], fill=(255, 200, 0), width=2); dr.line([c, c - 40, c, c - 18], fill=(255, 200, 0), width=2)
-        fr.append(label(im, name, f'{lb} 스택'))
+        fr.append(label(im, name, tr(f'{lb} 스택', f'{lb} stack')))
     save(fr, 'variable_' + name.split()[0] + '_' + name.split()[1], 700)
 
 
@@ -113,7 +116,7 @@ def m51_flash():
             d, w, h = raw_frame(os.path.join(base, f))
             crops.append((d[y - 60:y + 61, x - 60:x + 61], f[-8:-4]))
         ref = crops[0][0]; lo = np.median(ref); s = 1.4826 * np.median(np.abs(ref - lo))
-        fr = [label(Image.fromarray(stretch(a, lo - s, lo + 150 * s)[::-1]).resize((363, 363), Image.NEAREST), f'M51 섬광 {nm}', f'프레임 {n} (5분 노출)')
+        fr = [label(Image.fromarray(stretch(a, lo - s, lo + 150 * s)[::-1]).resize((363, 363), Image.NEAREST), tr(f'M51 섬광 {nm}', f'M51 flash {nm}'), tr(f'프레임 {n} (5분 노출)', f'frame {n} (5-min exposure)'))
               for a, n in crops]
         save(fr, f'm51_flash_{nm}', 900)
 
@@ -126,7 +129,7 @@ def single_vs_stack(sid, rawdir, day, ra, dec, title, half=300):
     D, hh, info = C.load_stack(sid); k = T.load_cat(sid)
     b = resample(C.lum(D), k['wcs'], ra, dec, half, step)
     out = []
-    for img, lb in ((a, '한 장 (노출 1회)'), (b, f"스택 ({info['n_registered']}장 합성)")):
+    for img, lb in ((a, tr('한 장 (노출 1회)', 'single frame')), (b, tr(f"스택 ({info['n_registered']}장 합성)", f"stack of {info['n_registered']} frames"))):
         m = np.nanmedian(img); s = 1.4826 * np.nanmedian(np.abs(img - m))
         out.append(label(Image.fromarray(stretch(img, m - 2 * s, np.nanpercentile(img, 99.95))), title, lb))
     W = Image.new('RGB', (out[0].width * 2 + 10, out[0].height)); W.paste(out[0], (0, 0)); W.paste(out[1], (out[0].width + 10, 0))
@@ -140,13 +143,13 @@ if __name__ == '__main__':
         asteroid_anim(144, '275 Sapientia')
         asteroid_anim(278, '1675 Simonida')
         asteroid_anim(292, '1008 La Paz')
-        asteroid_anim(1, 'C/2025 R3 PANSTARRS 혜성', half=140)
+        asteroid_anim(1, tr('C/2025 R3 PANSTARRS 혜성', 'C/2025 R3 PANSTARRS (comet)'), half=140)
     if 'var' in job:
         m42a, m42b = '2026-09-14_M_42_620mm_10s', '2026-10-08_M_42_620mm_10s'
-        variable_blink('TT Ori (오리온 젊은 별)', 83.8197, -4.7624, m42a, m42b)
-        variable_blink('V808 Ori (오리온 젊은 별)', 83.9422, -5.1810, m42a, m42b)
-        variable_blink('AH Ori (오리온 젊은 별)', 83.8572, -5.1637, m42a, m42b)
-        variable_blink('FN Cep (식쌍성)', 313.1844, 68.0962, '2026-06-27_NGC_7023_620mm_180s', '2026-08-07_NGC_7023_620mm_60s')
+        variable_blink(tr('TT Ori (오리온 젊은 별)', 'TT Ori (young star in Orion)'), 83.8197, -4.7624, m42a, m42b)
+        variable_blink(tr('V808 Ori (오리온 젊은 별)', 'V808 Ori (young star in Orion)'), 83.9422, -5.1810, m42a, m42b)
+        variable_blink(tr('AH Ori (오리온 젊은 별)', 'AH Ori (young star in Orion)'), 83.8572, -5.1637, m42a, m42b)
+        variable_blink(tr('FN Cep (식쌍성)', 'FN Cep (eclipsing binary)'), 313.1844, 68.0962, '2026-06-27_NGC_7023_620mm_180s', '2026-08-07_NGC_7023_620mm_60s')
     if 'flash' in job:
         m51_flash()
     if 'stack' in job:

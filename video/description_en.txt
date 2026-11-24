@@ -1,0 +1,31 @@
+Is there a star no one has ever seen, hiding in my own photos?
+
+Nearly a year of amateur astrophotography — about ten thousand frames, 89 sessions — re-analyzed for anything that isn't on the map of the sky: moving objects (asteroids, comets), changing objects (novae, supernovae, variable stars), and faint dust and gas.
+
+RESULTS
+- 26 trails of known asteroids and comets re-detected (275 Sapientia, 1008 La Paz, 1675 Simonida, comet C/2025 R3 PANSTARRS, ...)
+- 33 known variable stars re-detected (TT Ori, V808 Ori, FN Cep, ...)
+- Faint-asteroid search (GPU shift-and-stack) reached about magnitude 18: no new objects
+- New stars / novae / supernovae: none
+- One unexplained flash: 2026-04-17 18:01 UTC, toward M51. No match among 8,916 public or 451 classified (amateur-tracked) satellites.
+  If you know what it might be, please tell me in the comments!
+
+FREE & OPEN SOURCE — try it on your own photos
+The whole pipeline is open on GitHub: drop new images into your raw folder, run one command, and it sorts sessions, stacks, hunts for asteroids, compares brightness, checks dust, and writes a report with a "check by eye" list.
+https://github.com/orestes74/astro-anomaly-hunt
+
+CHAPTERS
+0:00 The dream
+1:52 What can an amateur find?
+3:09 The method, step by step
+6:33 What you can try
+7:58 The automation program
+8:48 What I found
+10:50 Your turn
+
+DATA & TOOLS
+ESA Gaia DR3 · IMCCE SkyBoT · AAVSO VSX · NASA/IPAC NED · NASA SkyView (IRIS, Planck, H-alpha) · Space-Track · McCants classfd
+Stacking: Siril · Analysis: Python (astropy, numpy, PyTorch)
+Narration: Kokoro TTS · Music: generated with ACE-Step
+
+#astrophotography #asteroid #astronomy #citizenscience #opensource
