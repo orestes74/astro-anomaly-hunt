@@ -1,0 +1,50 @@
+# 아마추어 망원경 1년치 데이터에서 이상 천체 찾기
+
+1년 동안 찍은 촬영 세션 89개(약 수만 장)를 다시 분석했습니다. 찾은 것은 세 가지입니다.
+움직이는 천체(소행성·혜성), 새로 나타나거나 밝기가 변한 천체(신성·초신성·변광성), 그리고 희미한 먼지·가스 구조입니다.
+
+## 결과 요약
+
+| 탐색 | 결과 |
+|---|---|
+| 소행성·혜성 (한 장씩) | 알려진 천체 11개 검출, 새 천체 0개 (한계 V≈17) |
+| 어두운 소행성 (GPU shift-and-stack) | 유의 후보 42개 모두 가짜, 새 천체 0개 (한계 V≈18~18.5) |
+| 신성·초신성 (세션 스택 비교) | Gaia에 없는 점광원 8,133개 → 확인 후 0개 |
+| 변광성 | 밝기 변화 1,981개 → 정밀 재측정 45개 → 알려진 변광성 33개, 나머지는 필터 차이와 퍼진 천체 |
+| 먼지·가스 (IRAS/Planck/Hα 비교) | 이상 구조 없음 |
+| **단일 프레임 섬광** | **M51 방향 2026-04-17 18:01 UTC, 공개·기밀 위성 목록 어디에도 맞지 않는 반사 섬광 1건** |
+
+자세한 내용은 [REPORT.md](REPORT.md), 영상 대본은 [video/script.md](video/script.md)에 있습니다.
+
+## 미리보기
+
+| 소행성 1675 Simonida | 변광성 TT Ori | M51 섬광 A |
+|---|---|---|
+| ![](animations/asteroid_1675.gif) | ![](animations/variable_TT_Ori.gif) | ![](animations/m51_flash_A.gif) |
+
+![한 장 vs 스택](animations/single_vs_stack_M51.png)
+
+## 폴더 구성
+
+| 폴더 | 내용 |
+|---|---|
+| `animations/` | 영상용 GIF·MP4: 소행성·혜성 이동, 변광성 깜빡이기, M51 섬광 앞·뒤, 한 장 vs 스택 |
+| `images/stacks/` | 스택 결과 미리보기 (긴 변 1600px) |
+| `images/asteroids/` | 알려진 소행성·혜성 궤적 잘라보기 |
+| `images/flash/` | 섬광 후보, M51 섬광 분석 그림, 검토용 잘라보기 |
+| `images/transient/` | 세션 비교 후보 검증 그림, 변광성 후보 몽타주 |
+| `images/ssa/` | shift-and-stack 유의 후보 검사 그림 |
+| `images/dustgas/` | 전천 먼지·Hα 지도와의 비교 그림 |
+| `data/` | 후보 목록·로그 (JSON/CSV) |
+| `code/` | 분석 코드: `stack/` 스태킹, `pipeline/` 단일 프레임 탐색·섬광 분석, `analysis/` SSA·세션 비교·먼지 |
+| `tools/` | 영상 자료 생성 스크립트 |
+| `video/` | 영상 대본과 장면 구성 |
+
+REPORT.md 안의 `results/...` 경로는 원래 분석 폴더 기준입니다. 이 저장소에서는 `images/`와 `data/`에 나뉘어 있습니다.
+
+## 사용한 도구와 데이터
+- 스태킹: Siril 1.4.5
+- 분석: Python (astropy, numpy, scipy, sep, PyTorch CUDA, skyfield)
+- 카탈로그: ESA Gaia DR3, IMCCE SkyBoT, AAVSO VSX, NASA/IPAC NED, NASA SkyView (IRIS, Planck, H-Alpha), Space-Track TLE, McCants classfd
+
+원본 FITS는 용량과 관측지 정보(헤더의 위경도) 때문에 올리지 않았습니다.
