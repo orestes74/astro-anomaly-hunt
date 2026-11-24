@@ -1,0 +1,13 @@
+numpy>=2.0
+scipy>=1.13
+pandas>=2.2
+astropy>=7.0
+astroquery>=0.4.9
+sep>=1.4
+pillow>=10
+requests
+matplotlib
+tzdata            # Windows에서 시간대(zoneinfo) 정보
+# 아래는 선택
+# torch (CUDA)    # ssa 단계: gpu_python 으로 지정한 파이썬에 설치
+# skyfield        # astrohunt/forensics 의 위성 궤도 대조
