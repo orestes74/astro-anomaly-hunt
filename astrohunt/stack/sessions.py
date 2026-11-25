@@ -8,6 +8,12 @@ from astropy.io import fits
 warnings.filterwarnings('ignore')
 HERE = cfg.WORK + '/stack'
 L = pd.read_csv(f'{HERE}/inventory/light.csv'); F = pd.read_csv(f'{HERE}/inventory/flat.csv'); D = pd.read_csv(f'{HERE}/inventory/dark.csv')
+# 플랫·다크 폴더가 비면(예전 inventory 결과는 열 이름도 없음) 플랫·다크 없이 진행
+_FCOLS = ['path', 'DATE-OBS', 'EXPTIME', 'FOCALLEN', 'NAXIS1', 'NAXIS2', 'angle_fn', 'mjd', 'local']
+if not all(c in F for c in _FCOLS):
+    F = pd.DataFrame(columns=_FCOLS) if not len(F) else F.reindex(columns=list(F.columns) + [c for c in _FCOLS if c not in F])
+if not all(c in D for c in ('DATE-OBS', 'EXPTIME', 'GAIN')):
+    D = D.iloc[0:0]
 import re as _re
 def _orig(p):   # 원본만: Light/<대상>/Light_*.fit (하위 폴더의 처리 결과물 제외)
     p = os.path.normpath(p); parts = p.split(os.sep)
@@ -56,7 +62,7 @@ for k, g in F[F.error.isna() if 'error' in F else slice(None)].groupby(['night',
     lv = [float(np.median(fits.getdata(p)[1000:3000:4, 1500:4500:4])) for p in g.path.iloc[[0, len(g) // 2, -1]]]
     fg.append(dict(night=k[0], scope=k[1], rot180=k[2], fexp=k[3], NAXIS1=k[4], NAXIS2=k[5], nflat=len(g), level=np.median(lv),
                    in_window=bool(g.in_window.all()), ft0=g.local.min(), files=list(g.path)))
-FG = pd.DataFrame(fg)
+FG = pd.DataFrame(fg, columns=['night', 'scope', 'rot180', 'fexp', 'NAXIS1', 'NAXIS2', 'nflat', 'level', 'in_window', 'ft0', 'files'])
 FG.to_pickle(f'{HERE}/inventory/flatgroups.pkl')
 print('플랫 그룹:'); print(FG.drop(columns='files').to_string())
 

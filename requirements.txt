@@ -7,7 +7,7 @@ sep>=1.4
 pillow>=10
 requests
 matplotlib
-tzdata            # Windows에서 시간대(zoneinfo) 정보
-# 아래는 선택
-# torch (CUDA)    # ssa 단계: gpu_python 으로 지정한 파이썬에 설치
-# skyfield        # astrohunt/forensics 의 위성 궤도 대조
+tzdata            # time zone data for zoneinfo on Windows
+# Optional
+# torch (CUDA)    # ssa step: install into the Python set as gpu_python
+# skyfield        # satellite orbit matching in astrohunt/forensics
