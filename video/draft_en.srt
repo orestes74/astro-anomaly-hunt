@@ -1,444 +1,468 @@
 1
-00:00:00,500 --> 00:00:05,800
-Anyone who photographs the night sky eventually has this dream.
+00:00:00,500 --> 00:00:05,550
+This is the galaxy M51, through my own telescope.
 
 2
-00:00:07,050 --> 00:00:12,000
-What if one of my photos holds a star that no one has ever seen?
+00:00:06,800 --> 00:00:13,750
+In one five minute frame, two points of light appeared. Five minutes later, they were gone.
 
 3
-00:00:13,250 --> 00:00:17,525
-What if a nameless asteroid is drifting through the frame?
+00:00:15,000 --> 00:00:19,299
+I checked thousands of satellites. None of them matched.
 
 4
-00:00:18,775 --> 00:00:22,999
-Or... what if it captured something no one can explain?
+00:00:19,600 --> 00:00:23,375
+So what was it? Let me start from the beginning.
 
 5
-00:00:24,250 --> 00:00:29,375
-When I was in elementary school, E.T. was playing in theaters.
+00:00:24,625 --> 00:00:29,924
+Anyone who photographs the night sky eventually has this dream.
 
 6
-00:00:29,675 --> 00:00:34,824
-I was the kid who carried a little E.T. doll on the tip of a pencil.
+00:00:31,175 --> 00:00:36,125
+What if one of my photos holds a star that no one has ever seen?
 
 7
-00:00:36,075 --> 00:00:43,400
-Korea was only just racing into industrialization back then, and the night sky was still dark.
+00:00:37,375 --> 00:00:41,650
+What if a nameless asteroid is drifting through the frame?
 
 8
-00:00:43,700 --> 00:00:49,300
-Whenever I looked up, the Milky Way flowed across it in a violet haze.
+00:00:42,900 --> 00:00:47,125
+Or... what if it captured something no one can explain?
 
 9
-00:00:49,600 --> 00:00:53,425
-And under it, I always wondered the same thing.
+00:00:48,375 --> 00:00:53,500
+When I was in elementary school, E.T. was playing in theaters.
 
 10
-00:00:53,725 --> 00:00:58,400
-Does that star have a name? And if not... could I give it one?
+00:00:53,800 --> 00:00:58,949
+I was the kid who carried a little E.T. doll on the tip of a pencil.
 
 11
-00:00:59,650 --> 00:01:04,099
-Years later, I finally got a telescope of my own.
+00:01:00,200 --> 00:01:07,525
+Korea was only just racing into industrialization back then, and the night sky was still dark.
 
 12
-00:01:04,400 --> 00:01:09,375
-But when I aimed it at the sky, there was almost nothing left to name.
+00:01:07,825 --> 00:01:13,425
+Whenever I looked up, the Milky Way flowed across it in a violet haze.
 
 13
-00:01:09,675 --> 00:01:17,500
-Giant survey telescopes sweep the entire sky every night, and they find almost everything new first.
+00:01:13,725 --> 00:01:17,550
+And under it, I always wondered the same thing.
 
 14
-00:01:18,750 --> 00:01:26,525
-So, like most of us, I picked a few pretty pictures to process, and buried the rest on a hard drive.
+00:01:17,850 --> 00:01:22,525
+Does that star have a name? And if not... could I give it one?
 
 15
-00:01:26,825 --> 00:01:32,350
-Nearly a year of imaging. About ten thousand frames, just sleeping there.
+00:01:23,775 --> 00:01:28,225
+Years later, I finally got a telescope of my own.
 
 16
-00:01:33,600 --> 00:01:36,850
-But is that really the end of the story?
+00:01:28,525 --> 00:01:33,500
+But when I aimed it at the sky, there was almost nothing left to name.
 
 17
-00:01:37,149 --> 00:01:43,275
-Somewhere in those ten thousand frames, could there still be something no one has seen?
+00:01:33,800 --> 00:01:41,625
+Giant survey telescopes sweep the entire sky every night, and they find almost everything new first.
 
 18
-00:01:43,574 --> 00:01:51,375
-Today, I want to share what it actually takes to turn that childhood dream into reality. Because I tried.
+00:01:42,875 --> 00:01:50,650
+So, like most of us, I picked a few pretty pictures to process, and buried the rest on a hard drive.
 
 19
-00:01:52,625 --> 00:01:57,975
-With an amateur telescope, there are three ways to find something new.
+00:01:50,950 --> 00:01:56,600
+Nearly a year of imaging. Over five thousand frames, just sleeping there.
 
 20
-00:01:59,225 --> 00:02:05,775
-First, things that move. Asteroids and comets, creeping slowly between the stars.
+00:01:57,850 --> 00:02:01,100
+But is that really the end of the story?
 
 21
-00:02:07,024 --> 00:02:09,674
-Second, things that change.
+00:02:01,399 --> 00:02:07,600
+Somewhere in those five thousand frames, could there still be something no one has seen?
 
 22
-00:02:09,975 --> 00:02:19,450
-A nova that suddenly brightens, a supernova exploding in a distant galaxy, a variable star that rises and fades.
+00:02:07,899 --> 00:02:15,700
+Today, I want to share what it actually takes to turn that childhood dream into reality. Because I tried.
 
 23
-00:02:20,700 --> 00:02:27,924
-Third, things that spread out. The faint cosmic dust and gas scattered all along the Milky Way.
+00:02:16,950 --> 00:02:22,299
+With an amateur telescope, there are three ways to find something new.
 
 24
-00:02:29,174 --> 00:02:32,950
-And the principle behind all three is the same.
+00:02:23,549 --> 00:02:30,100
+First, things that move. Asteroids and comets, creeping slowly between the stars.
 
 25
-00:02:33,249 --> 00:02:38,750
-Compare your image with a map of the sky, and look for what isn't on the map.
+00:02:31,350 --> 00:02:34,000
+Second, things that change.
 
 26
-00:02:39,049 --> 00:02:44,399
-Fortunately, that map already exists, and it's incredibly precise.
+00:02:34,299 --> 00:02:43,775
+A nova that suddenly brightens, a supernova exploding in a distant galaxy, a variable star that rises and fades.
 
 27
-00:02:44,700 --> 00:02:52,575
-The European Space Agency's Gaia satellite has measured the positions of nearly two billion stars.
+00:02:45,025 --> 00:02:52,250
+Third, things that spread out. The faint cosmic dust and gas scattered all along the Milky Way.
 
 28
-00:02:52,874 --> 00:03:01,325
-And the position of every known asteroid, more than a million of them, can be calculated for any date and time.
+00:02:53,500 --> 00:02:57,275
+And the principle behind all three is the same.
 
 29
-00:03:01,625 --> 00:03:08,600
-So all I had to do was line up my photos precisely with that map. Easier said than done.
+00:02:57,575 --> 00:03:03,075
+Compare your image with a map of the sky, and look for what isn't on the map.
 
 30
-00:03:09,850 --> 00:03:14,400
-The first step, surprisingly, is just getting organized.
+00:03:03,375 --> 00:03:08,725
+Fortunately, that map already exists, and it's incredibly precise.
 
 31
-00:03:14,700 --> 00:03:25,525
-Even in the same target folder, photos taken on a different night, with a different telescope, or with the camera rotated, are really different data.
+00:03:09,025 --> 00:03:16,900
+The European Space Agency's Gaia satellite has measured the positions of nearly two billion stars.
 
 32
-00:03:25,825 --> 00:03:31,875
-So I grouped everything into sessions. Same night, same telescope, same angle.
+00:03:17,200 --> 00:03:25,650
+And the position of every known asteroid, more than a million of them, can be calculated for any date and time.
 
 33
-00:03:32,174 --> 00:03:36,424
-Nearly a year of imaging became eighty-nine sessions.
+00:03:25,950 --> 00:03:32,925
+So all I had to do was line up my photos precisely with that map. Easier said than done.
 
 34
-00:03:37,674 --> 00:03:40,725
-A single frame is full of noise.
+00:03:34,175 --> 00:03:38,725
+The first step, surprisingly, is just getting organized.
 
 35
-00:03:41,024 --> 00:03:49,350
-But stack many frames of the same sky, perfectly aligned, and the noise fades while faint details emerge.
+00:03:39,025 --> 00:03:49,850
+Even in the same target folder, photos taken on a different night, with a different telescope, or with the camera rotated, are really different data.
 
 36
-00:03:49,649 --> 00:03:57,549
-Using flat frames from the same night to remove dust shadows and vignetting, I built seventy-six stacks.
+00:03:50,150 --> 00:03:56,200
+So I grouped everything into sessions. Same night, same telescope, same angle.
 
 37
-00:03:58,799 --> 00:04:05,924
-Next, every star in each image gets sky coordinates, and is matched against the Gaia map.
+00:03:56,500 --> 00:04:00,750
+Nearly a year of imaging became eighty-nine sessions.
 
 38
-00:04:06,225 --> 00:04:09,125
-That's where I hit my first wall.
+00:04:02,000 --> 00:04:05,050
+A single frame is full of noise.
 
 39
-00:04:09,424 --> 00:04:17,224
-Tiny distortions near the edges of the lens produced sixty-nine thousand stars that weren't on the map.
+00:04:05,350 --> 00:04:13,675
+But stack many frames of the same sky, perfectly aligned, and the noise fades while faint details emerge.
 
 40
-00:04:17,524 --> 00:04:24,249
-After modeling the distortion and matching again, that number dropped to about eight thousand.
+00:04:13,975 --> 00:04:21,875
+Using flat frames from the same night to remove dust shadows and vignetting, I built seventy-six stacks.
 
 41
-00:04:24,549 --> 00:04:27,349
-And here's the one big lesson.
+00:04:23,125 --> 00:04:30,250
+Next, every star in each image gets sky coordinates, and is matched against the Gaia map.
 
 42
-00:04:27,650 --> 00:04:32,674
-Ninety percent of finding something new is throwing out the fakes.
+00:04:30,550 --> 00:04:33,450
+That's where I hit my first wall.
 
 43
-00:04:33,924 --> 00:04:40,174
-Flip through the frames, and while the stars stay put, one dot moves on its own.
+00:04:33,750 --> 00:04:41,549
+Tiny distortions near the edges of the lens produced sixty-nine thousand stars that weren't on the map.
 
 44
-00:04:40,474 --> 00:04:46,449
-That's how I re-found ten named asteroids and one comet in my own data.
+00:04:41,850 --> 00:04:48,575
+After modeling the distortion and matching again, that number dropped to about eight thousand.
 
 45
-00:04:46,749 --> 00:04:49,849
-1675 Simonida.
+00:04:48,875 --> 00:04:51,674
+And here's the one big lesson.
 
 46
-00:04:51,099 --> 00:04:53,824
-1008 La Paz.
+00:04:51,975 --> 00:04:57,000
+Ninety percent of finding something new is throwing out the fakes.
 
 47
-00:04:55,075 --> 00:04:58,400
-275 Sapientia.
+00:04:58,250 --> 00:05:04,500
+Flip through the frames, and while the stars stay put, one dot moves on its own.
 
 48
-00:04:59,650 --> 00:05:05,349
-And comet C/2025 R3, wrapped in its glowing coma.
+00:05:04,800 --> 00:05:10,775
+That's how I re-found ten named asteroids and one comet in my own data.
 
 49
-00:05:06,599 --> 00:05:12,074
-Asteroids too faint to see in a single frame need another trick.
+00:05:11,075 --> 00:05:14,174
+1675 Simonida.
 
 50
-00:05:12,374 --> 00:05:17,849
-Guess the direction they're moving, shift each frame by that amount, and stack.
+00:05:15,425 --> 00:05:18,150
+1008 La Paz.
 
 51
-00:05:18,150 --> 00:05:23,649
-Using a graphics card, I tried thousands of directions and speeds.
+00:05:19,400 --> 00:05:22,725
+275 Sapientia.
 
 52
-00:05:23,950 --> 00:05:29,899
-Tested on known asteroids, it reached down to about magnitude eighteen.
+00:05:23,975 --> 00:05:29,675
+And comet C/2025 R3, wrapped in its glowing coma.
 
 53
-00:05:31,150 --> 00:05:37,674
-Then I compared star brightness between stacks of the same field, taken on different nights.
+00:05:30,925 --> 00:05:36,400
+Asteroids too faint to see in a single frame need another trick.
 
 54
-00:05:37,974 --> 00:05:42,799
-This is TT Orionis, inside the Orion Nebula.
+00:05:36,700 --> 00:05:42,175
+Guess the direction they're moving, shift each frame by that amount, and stack.
 
 55
-00:05:43,099 --> 00:05:49,074
-Within a few weeks, its brightness changed dramatically. It's a very young star.
+00:05:42,475 --> 00:05:47,974
+Using a graphics card, I tried thousands of directions and speeds.
 
 56
-00:05:50,325 --> 00:05:54,349
-In total, thirty-three stars changed brightness.
+00:05:48,275 --> 00:05:54,224
+Tested on known asteroids, it reached down to about magnitude eighteen.
 
 57
-00:05:54,650 --> 00:05:59,775
-And every single one was an already known variable star.
+00:05:55,475 --> 00:06:02,000
+Then I compared star brightness between stacks of the same field, taken on different nights.
 
 58
-00:06:01,025 --> 00:06:05,624
-That might sound disappointing, but it's actually good news.
+00:06:02,300 --> 00:06:07,125
+This is TT Orionis, inside the Orion Nebula.
 
 59
-00:06:05,924 --> 00:06:13,124
-It means that if a real new variable star or a nova had been there, this method would have caught it.
+00:06:07,425 --> 00:06:13,400
+Within a few weeks, its brightness changed dramatically. It's a very young star.
 
 60
-00:06:14,375 --> 00:06:21,974
-Finally, I overlaid the faint glow in my images with dust maps made by infrared satellites.
+00:06:14,650 --> 00:06:18,675
+In total, thirty-three stars changed brightness.
 
 61
-00:06:22,275 --> 00:06:28,950
-In the best fields, the correlation was above zero point nine. Almost a perfect match.
+00:06:18,975 --> 00:06:24,100
+And every single one was an already known variable star.
 
 62
-00:06:29,250 --> 00:06:32,775
-There was no dust cloud missing from the map.
+00:06:25,350 --> 00:06:29,950
+That might sound disappointing, but it's actually good news.
 
 63
-00:06:34,025 --> 00:06:39,150
-So what can you actually do to chase this dream? Here's what I learned.
+00:06:30,250 --> 00:06:38,675
+It means this method can catch a new variable star or a nova, as long as it's bright enough for my images.
 
 64
-00:06:40,400 --> 00:06:44,249
-One. Look again at the photos you already have.
+00:06:39,925 --> 00:06:47,525
+Finally, I overlaid the faint glow in my images with dust maps made by infrared satellites.
 
 65
-00:06:44,549 --> 00:06:53,299
-There are almost certainly asteroids in them. In my case, twenty-six asteroid trails were hiding in plain sight.
+00:06:47,825 --> 00:06:54,500
+In the best fields, the correlation was above zero point nine. Almost a perfect match.
 
 66
-00:06:54,549 --> 00:06:58,174
-Two. Shoot the same field again and again.
+00:06:54,800 --> 00:07:00,224
+Nothing new turned up, at least down to what my images can resolve.
 
 67
-00:06:58,474 --> 00:07:06,174
-A field you've imaged only once can't be compared. Change only shows up across two or more images.
+00:07:01,475 --> 00:07:06,600
+So what can you actually do to chase this dream? Here's what I learned.
 
 68
-00:07:07,424 --> 00:07:10,424
-Three. Take your flats the same night.
+00:07:07,850 --> 00:07:11,700
+One. Look again at the photos you already have.
 
 69
-00:07:10,724 --> 00:07:16,199
-The fainter your target, the more your calibration decides the result.
+00:07:12,000 --> 00:07:20,750
+There are almost certainly asteroids in them. In my case, twenty-six asteroid trails were hiding in plain sight.
 
 70
-00:07:17,449 --> 00:07:19,874
-Four. Shoot with a goal.
+00:07:22,000 --> 00:07:25,625
+Two. Shoot the same field again and again.
 
 71
-00:07:20,174 --> 00:07:26,374
-For new asteroids, stay on one field near the ecliptic for two to three hours.
+00:07:25,925 --> 00:07:33,625
+A field you've imaged only once can't be compared. Change only shows up across two or more images.
 
 72
-00:07:26,674 --> 00:07:34,549
-For supernovae, revisit galaxy-rich regions like Virgo or the Perseus cluster every few weeks.
+00:07:34,875 --> 00:07:37,875
+Three. Take your flats the same night.
 
 73
-00:07:34,849 --> 00:07:41,249
-For novae, check the Andromeda Galaxy often. Dozens erupt there every year.
+00:07:38,175 --> 00:07:43,650
+The fainter your target, the more your calibration decides the result.
 
 74
-00:07:42,499 --> 00:07:45,124
-And five. Be skeptical.
+00:07:44,900 --> 00:07:47,324
+Four. Shoot with a goal.
 
 75
-00:07:45,424 --> 00:07:51,999
-Most things that look new are satellite trails, hot pixels, or overlapping stars.
+00:07:47,625 --> 00:07:53,824
+For new asteroids, stay on one field near the ecliptic for two to three hours.
 
 76
-00:07:52,299 --> 00:07:57,624
-The first test is always the same. Does it show up on another night?
+00:07:54,125 --> 00:08:01,999
+For supernovae, revisit galaxy-rich regions like Virgo or the Perseus cluster every few weeks.
 
 77
-00:07:58,874 --> 00:08:06,574
-Doing all of this by hand takes weeks. So I bundled it into a single program, as a first draft.
+00:08:02,299 --> 00:08:08,699
+For novae, check the Andromeda Galaxy often. Dozens erupt there every year.
 
 78
-00:08:06,874 --> 00:08:19,424
-Point it at your raw photo folder, run one command, and it splits the sessions, stacks them, hunts for asteroids, compares brightness, checks the dust, and writes a report.
+00:08:09,950 --> 00:08:12,575
+And five. Be skeptical.
 
 79
-00:08:19,724 --> 00:08:26,449
-It only processes new photos, so you can simply run it after every imaging night.
+00:08:12,875 --> 00:08:19,450
+Most things that look new are satellite trails, hot pixels, or overlapping stars.
 
 80
-00:08:27,699 --> 00:08:34,749
-At the bottom of the report is a list of candidates that a human needs to look at, with pictures.
+00:08:19,750 --> 00:08:25,075
+The first test is always the same. Does it show up on another night?
 
 81
-00:08:35,049 --> 00:08:39,774
-In the end, the final call is always made by human eyes.
+00:08:26,325 --> 00:08:34,025
+Doing all of this by hand takes weeks. So I bundled it into a single program, as a first draft.
 
 82
-00:08:40,074 --> 00:08:47,300
-It's still a draft, tuned to my own setup and its folder layout. But all of the code is open.
+00:08:34,325 --> 00:08:46,875
+Point it at your raw photo folder, run one command, and it splits the sessions, stacks them, hunts for asteroids, compares brightness, checks the dust, and writes a report.
 
 83
-00:08:48,550 --> 00:08:54,374
-Through all of this, I found no new asteroid, and no new variable star.
+00:08:47,175 --> 00:08:53,900
+It only processes new photos, so you can simply run it after every imaging night.
 
 84
-00:08:54,675 --> 00:08:58,199
-But one thing remained that I couldn't explain.
+00:08:55,150 --> 00:09:02,199
+At the bottom of the report is a list of candidates that a human needs to look at, with pictures.
 
 85
-00:08:59,449 --> 00:09:04,224
-April eighteenth, 2026. Three in the morning.
+00:09:02,500 --> 00:09:07,224
+In the end, the final call is always made by human eyes.
 
 86
-00:09:04,525 --> 00:09:09,649
-A single five minute exposure of the galaxy M51.
+00:09:07,525 --> 00:09:14,750
+It's still a draft, tuned to my own setup and its folder layout. But all of the code is open.
 
 87
-00:09:09,949 --> 00:09:12,675
-Two round, star-like dots.
+00:09:16,000 --> 00:09:21,824
+Through all of this, I found no new asteroid, and no new variable star.
 
 88
-00:09:13,925 --> 00:09:17,349
-They're not in the frame five minutes earlier.
+00:09:22,125 --> 00:09:25,650
+But one thing remained that I couldn't explain.
 
 89
-00:09:17,650 --> 00:09:21,175
-And they're not in the frame five minutes later.
+00:09:26,900 --> 00:09:31,675
+April eighteenth, 2026. Three in the morning.
 
 90
-00:09:22,425 --> 00:09:29,749
-Looking closer, there were three extremely faint streaks, running side by side in the same direction.
+00:09:31,975 --> 00:09:37,099
+A single five minute exposure of the galaxy M51.
 
 91
-00:09:30,050 --> 00:09:33,874
-And both flashes sat exactly on that line.
+00:09:37,400 --> 00:09:40,125
+Two round, star-like dots.
 
 92
-00:09:34,175 --> 00:09:39,999
-Something was flying along that path, and for an instant, it caught the sunlight.
+00:09:41,375 --> 00:09:44,800
+They're not in the frame five minutes earlier.
 
 93
-00:09:41,250 --> 00:09:43,824
-But here's the strange part.
+00:09:45,100 --> 00:09:48,625
+And they're not in the frame five minutes later.
 
 94
-00:09:44,125 --> 00:09:49,400
-At that moment, the Sun was thirty-one degrees below the horizon.
+00:09:49,875 --> 00:09:57,199
+Looking closer, there were three extremely faint streaks, running side by side in the same direction.
 
 95
-00:09:49,700 --> 00:09:57,475
-To catch sunlight in that direction, an object had to be higher than one thousand one hundred twenty kilometers.
+00:09:57,500 --> 00:10:01,324
+And both flashes sat exactly on that line.
 
 96
-00:09:57,775 --> 00:10:03,850
-Starlink satellites and the space station were already deep inside Earth's shadow.
+00:10:01,625 --> 00:10:07,925
+Something seems to have been flying along that path, catching the sunlight for an instant.
 
 97
-00:10:05,100 --> 00:10:13,725
-So I checked every one of the eight thousand nine hundred sixteen public satellites that could have been in that part of the sky.
+00:10:09,175 --> 00:10:11,749
+But here's the strange part.
 
 98
-00:10:14,025 --> 00:10:16,250
-None of them matched.
+00:10:12,050 --> 00:10:17,324
+At that moment, the Sun was thirty-one degrees below the horizon.
 
 99
-00:10:17,500 --> 00:10:25,350
-I also checked four hundred fifty-one classified satellites tracked by amateur observers. Still nothing.
+00:10:17,625 --> 00:10:25,400
+To catch sunlight in that direction, an object had to be higher than one thousand one hundred twenty kilometers.
 
 100
-00:10:25,650 --> 00:10:31,750
-I considered a low flying aircraft, but the shape and color of the light didn't fit.
+00:10:25,699 --> 00:10:31,775
+Starlink satellites and the space station were already deep inside Earth's shadow.
 
 101
-00:10:33,000 --> 00:10:37,900
-As of today, this object appears in no public catalog.
+00:10:33,025 --> 00:10:41,650
+So I checked every one of the eight thousand nine hundred sixteen public satellites that could have been in that part of the sky.
 
 102
-00:10:38,200 --> 00:10:45,850
-I'm not saying it was an alien spacecraft. It was most likely an untracked artificial object.
+00:10:41,949 --> 00:10:44,175
+None of them matched.
 
 103
-00:10:46,150 --> 00:10:49,775
-But the truth is, we don't know what it was.
+00:10:45,425 --> 00:10:52,349
+I also checked four hundred fifty-one classified satellites tracked by amateur observers.
 
 104
-00:10:51,025 --> 00:10:57,650
-The dream of finding a new star sounds grand. But it starts on your own hard drive.
+00:10:52,650 --> 00:11:00,624
+Their orbits were from seven months later, so I could only compare orbital planes. None of them lined up.
 
 105
-00:10:57,949 --> 00:11:08,650
-Just by looking again at nearly a year of photos, I met ten asteroids, a comet, thirty-three variable stars, and one mysterious flash.
+00:11:00,925 --> 00:11:07,025
+I considered a low flying aircraft, but the shape and color of the light didn't fit.
 
 106
-00:11:09,900 --> 00:11:13,699
-This time, I didn't get to name a new star.
+00:11:08,275 --> 00:11:13,050
+As of today, it matches nothing in the catalogs I checked.
 
 107
-00:11:14,000 --> 00:11:22,474
-But that kid with the E.T. doll on a pencil, looking up at the Milky Way, asking, does that star have a name?
+00:11:13,350 --> 00:11:21,625
+I'm not saying it was an alien spacecraft. My best guess is sunlight glinting off something no one is tracking.
 
 108
-00:11:22,775 --> 00:11:27,199
-Now, I finally have a way to search for the answer myself.
+00:11:21,925 --> 00:11:24,824
+But that's only a hypothesis.
 
 109
-00:11:28,449 --> 00:11:33,974
-I hope you'll go looking for the star you've been carrying in your heart all these years.
+00:11:25,125 --> 00:11:28,750
+But the truth is, we don't know what it was.
 
 110
-00:11:34,275 --> 00:11:38,599
-All of the code and data are linked in the description.
+00:11:30,000 --> 00:11:36,625
+The dream of finding a new star sounds grand. But it starts on your own hard drive.
 
 111
-00:11:38,900 --> 00:11:44,149
+00:11:36,925 --> 00:11:47,625
+Just by looking again at nearly a year of photos, I met ten asteroids, a comet, thirty-three variable stars, and one mysterious flash.
+
+112
+00:11:48,875 --> 00:11:52,675
+This time, I didn't get to name a new star.
+
+113
+00:11:52,975 --> 00:12:01,449
+But that kid with the E.T. doll on a pencil, looking up at the Milky Way, asking, does that star have a name?
+
+114
+00:12:01,750 --> 00:12:06,175
+Now, I finally have a way to search for the answer myself.
+
+115
+00:12:07,425 --> 00:12:12,949
+I hope you'll go looking for the star you've been carrying in your heart all these years.
+
+116
+00:12:13,250 --> 00:12:17,574
+All of the code and data are linked in the description.
+
+117
+00:12:17,875 --> 00:12:23,124
 And if you know what this flash might have been, please tell me in the comments.
 

@@ -1,13 +1,13 @@
 Is there a star no one has ever seen, hiding in my own photos?
 
-Nearly a year of amateur astrophotography — about ten thousand frames, 89 sessions — re-analyzed for anything that isn't on the map of the sky: moving objects (asteroids, comets), changing objects (novae, supernovae, variable stars), and faint dust and gas.
+Nearly a year of amateur astrophotography — over five thousand frames, 89 sessions — re-analyzed for anything that isn't on the map of the sky: moving objects (asteroids, comets), changing objects (novae, supernovae, variable stars), and faint dust and gas.
 
 RESULTS
 - 26 trails of known asteroids and comets re-detected (275 Sapientia, 1008 La Paz, 1675 Simonida, comet C/2025 R3 PANSTARRS, ...)
 - 33 known variable stars re-detected (TT Ori, V808 Ori, FN Cep, ...)
 - Faint-asteroid search (GPU shift-and-stack) reached about magnitude 18: no new objects
 - New stars / novae / supernovae: none
-- One unexplained flash: 2026-04-17 18:01 UTC, toward M51. No match among 8,916 public or 451 classified (amateur-tracked) satellites.
+- One unexplained flash: 2026-04-17 18:01 UTC, toward M51. No match among the 8,916 public satellites checked; no orbital plane match among 451 amateur-tracked classified satellites (their orbits date from seven months later, so only planes could be compared).
   If you know what it might be, please tell me in the comments!
 
 FREE & OPEN SOURCE — try it on your own photos
@@ -15,13 +15,14 @@ The whole pipeline is open on GitHub: drop new images into your raw folder, run 
 https://github.com/orestes74/astro-anomaly-hunt
 
 CHAPTERS
-0:00 The dream
-1:52 What can an amateur find?
-3:09 The method, step by step
-6:33 What you can try
-7:58 The automation program
-8:48 What I found
-10:50 Your turn
+0:00 A flash near M51
+0:23 The dream
+2:15 What can an amateur find?
+3:33 The method, step by step
+7:00 What you can try
+8:25 The automation program
+9:15 What I found
+11:29 Your turn
 
 DATA & TOOLS
 ESA Gaia DR3 · IMCCE SkyBoT · AAVSO VSX · NASA/IPAC NED · NASA SkyView (IRIS, Planck, H-alpha) · Space-Track · McCants classfd

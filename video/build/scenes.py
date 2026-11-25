@@ -42,10 +42,10 @@ SCENES = [
         "Giant survey telescopes sweep the entire sky every night, and they find almost everything new first."]),
     (1, ('scroll', 'video/build/assets/folders.webp'), [
         "So, like most of us, I picked a few pretty pictures to process, and buried the rest on a hard drive.",
-        "Nearly a year of imaging. About ten thousand frames, just sleeping there."]),
+        "Nearly a year of imaging. Over five thousand frames, just sleeping there."]),
     (1, ('img', VEIL), [
         "But is that really the end of the story?",
-        "Somewhere in those ten thousand frames, could there still be something no one has seen?",
+        "Somewhere in those five thousand frames, could there still be something no one has seen?",
         "Today, I want to share what it actually takes to turn that childhood dream into reality. Because I tried."]),
 
     # 2. What can we find
@@ -105,11 +105,11 @@ SCENES = [
         "And every single one was an already known variable star."]),
     (3, ('vid', 'animations/variable_FN_Cep.mp4'), [
         "That might sound disappointing, but it's actually good news.",
-        "It means that if a real new variable star or a nova had been there, this method would have caught it."]),
+        "It means this method can catch a new variable star or a nova, as long as it's bright enough for my images."]),
     (3, ('img', 'images/dustgas/2026-05-15_NGC_7000_857mm_180s.png'), [
         "Finally, I overlaid the faint glow in my images with dust maps made by infrared satellites.",
         "In the best fields, the correlation was above zero point nine. Almost a perfect match.",
-        "There was no dust cloud missing from the map."]),
+        "Nothing new turned up, at least down to what my images can resolve."]),
 
     # 4. What you can try
     (4, ('card', 'What you can try', ''), [
@@ -160,7 +160,7 @@ SCENES = [
     (6, ('img', 'images/flash/M51_섬광_일직선.png'), [
         "Looking closer, there were three extremely faint streaks, running side by side in the same direction.",
         "And both flashes sat exactly on that line.",
-        "Something was flying along that path, and for an instant, it caught the sunlight."]),
+        "Something seems to have been flying along that path, catching the sunlight for an instant."]),
     (6, ('gen', 'shadow'), [
         "But here's the strange part.",
         "At that moment, the Sun was thirty-one degrees below the horizon.",
@@ -170,11 +170,13 @@ SCENES = [
         "So I checked every one of the eight thousand nine hundred sixteen public satellites that could have been in that part of the sky.",
         "None of them matched."]),
     (6, ('card', '451', 'classified satellites tracked by amateurs  →  no match'), [
-        "I also checked four hundred fifty-one classified satellites tracked by amateur observers. Still nothing.",
+        "I also checked four hundred fifty-one classified satellites tracked by amateur observers.",
+        "Their orbits were from seven months later, so I could only compare orbital planes. None of them lined up.",
         "I considered a low flying aircraft, but the shape and color of the light didn't fit."]),
     (6, ('img', 'images/flash/m51_flash_zoom.png'), [
-        "As of today, this object appears in no public catalog.",
-        "I'm not saying it was an alien spacecraft. It was most likely an untracked artificial object.",
+        "As of today, it matches nothing in the catalogs I checked.",
+        "I'm not saying it was an alien spacecraft. My best guess is sunlight glinting off something no one is tracking.",
+        "But that's only a hypothesis.",
         "But the truth is, we don't know what it was."]),
 
     # 7. Your turn
@@ -209,6 +211,17 @@ for _i, _name in MOTION.items():
     SCENES[_i] = (SCENES[_i][0], ('motion', _name), SCENES[_i][2])
 # 팡세 엔딩은 뺌 (장면 번호는 유지해야 하므로 'skip'으로 표시)
 SCENES = [(a, ('skip',), l) if v[0] == 'quote' else (a, v, l) for a, v, l in SCENES]
+# 도입 15초: M51 섬광 미리보기 (장면 번호가 밀리므로 MOTION 적용 뒤에 앞에 붙임)
+COLD_OPEN = [
+    (0, ('img', 'video/build/assets/m51_open.jpg'), [
+        "This is the galaxy M51, through my own telescope."]),
+    (0, ('vid', 'animations/m51_flash_A.mp4'), [
+        "In one five minute frame, two points of light appeared. Five minutes later, they were gone."]),
+    (0, ('motion', 'count8916'), [
+        "I checked thousands of satellites. None of them matched.",
+        "So what was it? Let me start from the beginning."]),
+]
+SCENES = COLD_OPEN + SCENES
 # 애니메이션은 영어 라벨판 사용
 SCENES = [(a, ('vid', v[1].replace('animations/', 'video/build/assets/anim_en/')) if v[0] == 'vid' else v, l) for a, v, l in SCENES]
 
@@ -216,5 +229,5 @@ MUSIC = {   # 섹션별 배경음악 (video/music 기준)
     'main': 'sicilienne_c_flute_piano_strings_s42.wav',
     'mystery': 'sicilienne_b_cello_piano_s11.wav',
 }
-SECTION_MUSIC = {1: 'main', 2: 'main', 3: 'main', 4: 'main', 5: 'main', 6: 'mystery', 7: 'main'}
+SECTION_MUSIC = {0: 'mystery', 1: 'main', 2: 'main', 3: 'main', 4: 'main', 5: 'main', 6: 'mystery', 7: 'main'}
 VOICE, SPEED = 'am_michael', 0.95

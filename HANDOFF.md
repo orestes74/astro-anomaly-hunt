@@ -11,7 +11,7 @@
 1. **도입부 끝에 M51 섬광 미리보기 2~3초** (시청 유지용). `scenes.py`에서 도입부 마지막 장면 뒤에 `animations/m51_flash_A` 짧게 삽입.
 2. **잘 안 읽히는 분석 그림 2장을 모션 그래픽으로 교체**: 장면 25(먼지·가스 비교 패널), 장면 33(검토 표). `motion.py`에 새 함수 추가 후 `scenes.py`의 `MOTION` 사전에 등록.
 3. **배경음악 교체**: 포레 「시실리엔」 분위기. 지금은 ACE-Step 생성곡 `sicilienne_c_flute_piano_strings_s42.wav`(임시, 피아노가 지저분함). 사용자가 곡을 고르면 `scenes.py`의 `MUSIC` 수정, 소개란 크레딧도 수정.
-4. **최종본**: 하단 자막 없이 렌더(`assemble.py`에서 ass 필터 끄기) + 영어 SRT 별도.
+4. **최종본 (4K, 3840×2160)**: 검토용 초안은 FHD, 최종본과 각 언어 더빙판은 4K. 모션 그래픽·카드도 4K로 다시 그림. 하단 자막 없이 렌더(`assemble.py`에서 ass 필터 끄기) + 영어 SRT 별도.
 5. **다국어**: 한국어·일본어·독일어·프랑스어·스페인어·중국어·포르투갈어 자막(SRT) + 더빙. 더빙은 Chatterbox Multilingual(`chatterbox.mtl_tts.ChatterboxMultilingualTTS`)로 영어 내레이션 목소리 복제. 언어별로 장면 길이를 다시 맞춘 영상. 화면 속 글자 카드는 영어 유지.
 
 ## 빌드 방법
