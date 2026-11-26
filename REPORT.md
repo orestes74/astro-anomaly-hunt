@@ -1,14 +1,16 @@
-# h:\asiair 이상 천체 탐색 결과 (2026-11-20)
+**English** | [한국어](REPORT.ko.md)
 
-범위: `h:\asiair\Autorun\Light`의 Light 프레임 5,108장(손상 파일 1장 `M 44 ..._0004.fit` 제외), 시퀀스 581개.
-FITS 원본은 읽기만 했습니다. 외부(IMCCE SkyBoT)에는 시퀀스 중심 좌표와 시각만 보냈습니다.
+# Anomaly search results (2026-11-20)
 
-## 1. 이동 천체(소행성·혜성): 알려진 천체 11개 검출, 새 후보 0개
+Scope: 5,108 light frames from the raw `Light` folder (one corrupted file, `M 44 ..._0004.fit`, excluded), 581 sequences.
+The raw FITS files were only read, never modified. Only sequence center coordinates and times were sent to an external service (IMCCE SkyBoT).
 
-| 천체 | 밝기(V) | 타깃 폴더 | 비고 |
+## 1. Moving objects (asteroids & comets): 11 known objects detected, 0 new candidates
+
+| Object | Brightness (V) | Target folder | Notes |
 |---|---|---|---|
-| 혜성 C/2025 R3 (PANSTARRS) | 혜성 | C2025 R3 PANSTARRS | 약 6.8″/분, 코마 확인 |
-| 275 Sapientia | 13.9 | M 44 | 27장 중 27장 검출 |
+| Comet C/2025 R3 (PANSTARRS) | comet | C2025 R3 PANSTARRS | about 6.8″/min, coma visible |
+| 275 Sapientia | 13.9 | M 44 | detected in 27 of 27 frames |
 | 1675 Simonida | 14.6 | NGC 7293 | |
 | 1008 La Paz | 15.1 | NGC 7293 | |
 | 2525 O'Steen | 15.9 | SH2 248 jellyfish | |
@@ -19,155 +21,155 @@ FITS 원본은 읽기만 했습니다. 외부(IMCCE SkyBoT)에는 시퀀스 중�
 | 51371 2000 XF15 | 16.9 | M 3 | |
 | 43354 2000 SZ278 | 17.1 | IC 4604 | |
 
-- 이동 궤적 후보는 모두 317개였습니다. 26개는 알려진 천체이고, 나머지 291개는 모두 가짜였습니다.
-  - 하늘 고정 위치 검사에서 걸러진 것 258개
-  - 육안으로 확인한 정지한 별·겹친 이중성 22개
-  - 핫픽셀 11개
-- **검증을 통과한 미확인 이동 천체는 없습니다.**
-- 검출 한계(시야 안에 있던 알려진 소행성 중 실제로 잡은 비율): V<15는 6개 중 4개, V15–16은 6개 중 3개, V16–17은 8개 중 4개, V17–18은 43개 중 1개, V>18은 0개.
-  즉 **V≈17보다 밝은 천체만 안정적으로 찾습니다.** 프레임을 한 장씩 따로 검출하는 방식(스태킹 없음)이라 더 어두운 천체는 놓칩니다.
+- There were 317 moving-trail candidates in total. 26 were known objects; the other 291 were all false.
+  - 258 removed by the sky-fixed position test
+  - 22 stationary stars or blended double stars, checked by eye
+  - 11 hot pixels
+- **No unidentified moving object passed vetting.**
+- Detection limit (fraction of known asteroids in the field that were actually detected): 4 of 6 at V<15, 3 of 6 at V15–16, 4 of 8 at V16–17, 1 of 43 at V17–18, 0 above V18.
+  So **only objects brighter than about V≈17 are found reliably.** Detection runs on each frame separately (no stacking), so fainter objects are missed.
 
-## 2. 단일 프레임 섬광(일시적 현상): 유력한 사례 1건
+## 2. Single-frame flashes (transient events): 1 strong case
 
-- **M 51, `Light_M 51_300.0s_Bin1_20260418-030615_16deg_0019.fit`** (2026-04-17 18:01 UTC 시작, 300초 노출)
-  - 밝은 점광원 2개가 x,y ≈ (1730,1659)와 (1328,1242)에 있습니다. 5분 전과 5분 후 프레임에는 없습니다.
-  - 꼬리 없이 별처럼 보이고, 장노출로 찍힌 별보다 조금 더 선명합니다. 1초도 안 되는 짧은 섬광이라면 이렇게 보입니다.
-  - 같은 프레임을 위성 궤적 2개가 가로지르고, (1328,1242)는 그중 희미한 궤적의 연장선 위에 있습니다.
-  - → **회전하는 인공위성의 반사광(글린트)일 가능성이 가장 높습니다.** TLE 궤도 데이터와 대조하면 확인할 수 있습니다.
-  - 추가 검토 (`shadow.py`, 2026-11-21):
-    - 관측 시각은 03:01 KST였고 태양 고도가 −31°였습니다. 이 시선 방향에서는 **지표 높이 약 1,120–1,170 km 이상**이어야 햇빛을 받습니다. 따라서 스타링크(약 550 km)·ISS 같은 저궤도 위성은 그림자 안에 있었습니다.
-    - 섬광이 별처럼 둥글다는 것은 섬광 동안 거의 움직이지 않았다는 뜻입니다. 1,300 km 거리의 위성은 초당 약 1,000 px를 움직이므로, 그 정도 위성이라면 섬광이 수 밀리초 이하로 짧았어야 합니다. 중궤도·고타원궤도처럼 높이 떠서 느리게 움직이는 물체의 글린트가 더 자연스럽습니다. B가 희미한 궤적 위에 있는 것은 우연일 수도 있습니다. → 정정(2026-11-21, `results/flashB_track.log`): B는 희미한 궤적 중심선에서 0.9 px 떨어져 있어 직선 맞춤 잔차(0.9 px) 안에 들어옵니다. 무작위 점이 우연히 이만큼 가까이 놓일 확률은 약 0.1%이므로, **B는 희미한 궤적을 남긴 물체가 순간적으로 반사한 빛(글린트)으로 봅니다.** B의 총 빛은 그 궤적 2,800 px 길이 분량인데 궤적 방향으로 늘어나지 않았습니다. 따라서 평소보다 최소 약 1,400배(약 8등) 밝게, 물체가 2 px 움직이는 동안만 빛났습니다. 반면 밝은 궤적은 길이를 따라 밝기가 최대 약 8배까지 오르내립니다. 회전(텀블링)하는 물체로 보입니다.
-    - 섬광 A (`flashA_lines.py`, `results/flashA_lines.log`, 2026-11-21):
-      - A를 지나는 모든 방향의 직선을 따라 밝기를 더해 봤습니다. 다른 두 궤적과 같은 90.5° 방향에서 유의도 7.6이 나왔습니다. 같은 각도로 15–60 px 옆을 지나는 선들은 1–4이고, 앞뒤 프레임(0018, 0020)의 같은 자리에는 없습니다(1–2). 같은 방법을 B에 쓰면 32.7이 나와 방법이 맞게 작동함도 확인했습니다.
-      - → **A 위로도 아주 희미한 세 번째 평행 궤적이 지나갑니다.** 밝기는 희미한 궤적의 약 1/4입니다. A도 B처럼 이 세 번째 물체의 글린트로 보며, 순간 밝기는 평소의 약 1만 배 이상입니다(A는 포화되어 이것도 하한).
-      - 같은 방향의 평행 궤적 3개(x≈1000, 1330, 1730, 간격 330·400 px)는 같은 궤도를 수 초 간격으로 따라가는 무리로 설명할 수 있습니다. 노출 중 관측자가 지구 자전으로 움직이면서 앞뒤 물체의 궤적이 옆으로 밀립니다. 고도 약 1,200 km라면 간격 5–6초, 궤도상 약 35–40 km입니다(어림값).
-      - 직전 발사를 찾아봤습니다. 4/16 23:17 UTC 플레세츠크(소유즈-2.1b/볼가, 코스모스 군사위성 여러 기)와 4/17 04:10 UTC 주취안(창정 4C, Daqi-2)이 있었습니다. 그러나 둘 다 고도 약 500–700 km라 관측 시각에는 그림자 안이었으므로 이 궤적들이 아닙니다.
-    - 같은 프레임의 세 번째 점 (2448,2403)은 A–B 직선에서 0.23 px밖에 벗어나지 않습니다. 그러나 폭 1 px, 길이 8 px의 날카로운 세로선이라 우주선(cosmic ray)입니다. 정렬은 우연으로 판단합니다.
-    - TLE 대조 (`tle_match.py`, 2026-11-21, `tle/tle_20260417.txt`: epoch 4/16–17, 8,916개 천체, 스타링크 없음):
-      - 노출 300초 동안 시야 3° 안에 들어온 천체는 4개, 화면을 지나간 것은 CZ-2D DEB(44607, 높이 838 km) 1개뿐입니다. 이 잔해는 지구 그림자 안이었고, 진행 각도(−70°)도 사진 속 두 궤적(거의 수직, −89°)과 다릅니다.
-      - **햇빛을 받으며 A나 B 근처를 지나간 목록상 천체는 없습니다.** 가장 가까운 것도 수천 px 떨어져 있습니다.
-      - 사진 속 수직 궤적 2개(x≈1000 밝음, x≈1330 희미함, B가 이 위에 있음)도 목록의 어떤 천체와도 맞지 않습니다. 이 파일에 없는 천체, 예를 들어 공개 TLE가 없는 기밀 위성일 가능성이 있습니다. 나란히 가는 두 궤적과 햇빛을 받으려면 1,100 km 이상이어야 한다는 조건은 쌍으로 비행하는 NOSS 계열과 어울리지만, 확인되지 않은 가설입니다.
-      - 결과 로그: `results/tle_match.log`
-    - 기밀 위성 대조 (`tle_plane.py`, 2026-11-21, McCants `classfd.tle` 451개, epoch 2026-11):
-      - epoch가 7개월 뒤라 위성이 언제 어디 있었는지는 알 수 없습니다. 그래서 궤도면만 봤습니다: 노출 중 궤도 고리가 시야를 지나가는지, 지나간다면 진행 각도와 햇빛 여부가 맞는지. 노출 중 지구 자전으로 관측자가 움직이는 효과도 넣었고, 공개 TLE의 CZ-2D DEB로 방법을 검증했습니다.
-      - 시야를 지나는 궤도는 StarShield 13개(높이 약 580 km)뿐이었습니다. 모두 지구 그림자 안이었고, 진행 각도(−105°)도 사진 속 궤적(−89°)과 다릅니다.
-      - NOSS 쌍 중 가장 가까운 NOSS 3-5(A/B)도 궤도면이 시야에서 약 15° 떨어져 있습니다. 7개월치 세차 오차로는 설명하기 어려운 차이라 **NOSS 가설은 기각합니다** (그 사이 궤도 기동이 없었다는 전제).
-      - 결론: 섬광 A·B와 수직 궤적 2개 모두 공개·기밀 목록 어디에도 맞는 천체가 없습니다. 공개 파일(8,916개)은 Space-Track `gp_history`를 원지점 고도 1,000 km 초과로 걸러 받은 것입니다(파일 안 최소 원지점 1,000 km 확인). 빠진 천체는 1,000 km보다 높이 올라가지 못하므로, 햇빛을 받으려면 1,120 km 이상이어야 했던 이 시선 방향에서는 모두 그림자 안입니다. 따라서 **공개 목록 중 보일 수 있었던 천체는 빠짐없이 대조했습니다.** 남는 가능성은 목록에 없는 천체(추적되지 않거나 공개되지 않은 물체), 그리고 비행기입니다.
-      - 결과 로그: `results/tle_plane.log`
-    - 밝기와 크기 (`flash_phot.py`, `flash_size.py`, 2026-11-21; Gaia DR3 별 198개로 영점 보정, ±0.25등):
-      - 섬광 A는 300초 적분 등가 G 10.7등(피크가 포화되어 실제로는 더 밝음), B는 11.4등입니다. 1초 동안 빛났다고 치면 각각 4.5등, 5.2등입니다.
-      - 궤적 색은 둘 다 별과 비슷한 흰색입니다. 비행기 날개 끝 항행등(빨강·초록)이 아닙니다.
-      - 궤적 물체의 크기(확산 반사, 반사율 0.2)는 고도 1,150 km에서 밝은 것 약 4등·지름 7 m, 희미한 것 약 5등·지름 4 m입니다. 고도가 높을수록 커집니다(GPS 고도에서 약 19 m, 12 m).
-      - 섬광 크기(평면 거울 반사, 반사율 0.9): 별처럼 둥글려면 섬광이 수 ms 이하여야 하고, 그러면 거울 지름이 20 cm 이상(1,150 km)에서 60 cm 이상(정지궤도)이어야 합니다.
-      - 이렇게 밝고 큰 물체가 공개 목록에도 기밀 목록에도 없다는 점은 여전히 설명되지 않습니다.
-    - 항공기(전투기) 가설 검토 (2026-11-21, `results/jet_profile.log`): 저고도 항공기 가능성도 검토했습니다.
-      - 망원경은 무한대에 초점이 맞춰져 있으므로, 거리 L의 물체는 구경 D에 대해 약 D/L 라디안 크기의 원반(중앙 차폐가 있으면 도넛)으로 흐려집니다.
-      - 측정한 단면 폭(FWHM, 2×2 비닝): 밝은 궤적 약 3.5″, 희미한 궤적 약 1.8″ 이하, 섬광 A·B 1.8–3.5″. 모두 별(8.8″)보다 훨씬 좁고, 꼭대기가 뾰족한 단일 봉우리입니다. 평평하거나 가운데가 꺼진 모양이 아닙니다.
-      - 구경을 보수적으로 150–280 mm로 잡으면, 흐림이 2–3.5″ 이하이려면 거리가 약 10–30 km 이상이어야 합니다.
-      - 두 궤적의 간격(288″)을 전투기 날개 폭(약 10 m)으로 설명하려면 거리가 약 7 km여야 하고, 그러면 6–10″ 크기의 도넛으로 흐려졌어야 합니다. 색도 항행등의 빨강·초록이 아니라 흰색입니다. → **날개 끝 항행등 해석은 기각합니다.**
-      - 고도 10 km 이상을 나는 항공기 2대가 각각 궤적을 남겼을 가능성은 구경을 정확히 알아야 완전히 배제할 수 있습니다.
-- 위성 플레어·짧은 궤적: M 42(0011, 0013), Zeta Ophiuchi(0027, 점선 모양), Flame Nebula(0161), Rosette(0224, 희미하고 퍼져 있어 불확실).
-- 제외한 것:
-  - 우주선(cosmic ray) 141건 이상
-  - 이웃 프레임에도 계속 보이는 것 51건
-  - 위성 궤적 위의 점 37건
-  - 넓게 퍼진 것 36건
-  - sh2-124 `_0100` 프레임 전체(마운트가 흔들린 프레임)
+- **M 51, `Light_M 51_300.0s_Bin1_20260418-030615_16deg_0019.fit`** (exposure start 2026-04-17 18:01 UTC, 300 s)
+  - Two bright point sources at x,y ≈ (1730,1659) and (1328,1242). They are absent from the frames five minutes before and after.
+  - They have no tails, look like stars, and are slightly sharper than the long-exposure stars. That is what a flash shorter than a second looks like.
+  - Two satellite trails cross the same frame, and (1328,1242) lies on the extension of the fainter one.
+  - → **The most likely explanation is a glint from a tumbling satellite.** Matching against TLE orbit data can confirm it.
+  - Further review (`shadow.py`, 2026-11-21):
+    - The observation was at 03:01 KST, with the Sun 31° below the horizon. Along this line of sight an object had to be **at least about 1,120–1,170 km above the ground** to be in sunlight. Low-orbit satellites like Starlink (~550 km) and the ISS were in Earth's shadow.
+    - A round, star-like flash means the object barely moved during the flash. A satellite 1,300 km away moves about 1,000 px per second, so at that distance the flash must have lasted a few milliseconds or less. A glint from a higher, slower object (medium or highly elliptical orbit) would be more natural. B lying on the faint trail could be a coincidence. → Correction (2026-11-21, `results/flashB_track.log`): B is 0.9 px from the faint trail's center line, within the line-fit residual (0.9 px). A random point lands that close only about 0.1% of the time, so **B is taken to be a glint from the object that left the faint trail.** B's total light equals 2,800 px worth of that trail, yet it is not stretched along the trail. So it shone at least about 1,400 times (about 8 magnitudes) brighter than usual, only while the object moved 2 px. The bright trail, by contrast, varies in brightness by up to about 8× along its length, which suggests a tumbling object.
+    - Flash A (`flashA_lines.py`, `results/flashA_lines.log`, 2026-11-21):
+      - I summed brightness along lines through A in every direction. The 90.5° direction, the same as the other two trails, gave a significance of 7.6. Parallel lines 15–60 px to the side gave 1–4, and the same spot in the neighboring frames (0018, 0020) gave nothing (1–2). The same method gives 32.7 on B, confirming that it works.
+      - → **A very faint third parallel trail also passes through A.** It is about 1/4 as bright as the faint trail. A is taken to be a glint from this third object, like B; its peak brightness was more than about 10,000 times its usual level (A is saturated, so this is also a lower limit).
+      - Three parallel trails in the same direction (x≈1000, 1330, 1730, spaced 330 and 400 px) can be explained as a group following the same orbit a few seconds apart. During the exposure the observer moves with Earth's rotation, which shifts the trails of leading and trailing objects sideways. At about 1,200 km altitude that means 5–6 seconds apart, about 35–40 km along the orbit (rough estimate).
+      - I looked for recent launches: Plesetsk at 4/16 23:17 UTC (Soyuz-2.1b/Volga, several Kosmos military satellites) and Jiuquan at 4/17 04:10 UTC (Long March 4C, Daqi-2). Both went to about 500–700 km and would have been in shadow at the time, so neither made these trails.
+    - A third point in the same frame, (2448,2403), lies only 0.23 px off the A–B line. But it is a sharp vertical line 1 px wide and 8 px long, so it is a cosmic ray. The alignment is judged a coincidence.
+    - TLE matching (`tle_match.py`, 2026-11-21, `tle/tle_20260417.txt`: epochs 4/16–17, 8,916 objects, no Starlink):
+      - During the 300 s exposure, 4 objects came within 3° of the field, and only one crossed the image: CZ-2D DEB (44607, 838 km). That debris was in Earth's shadow, and its direction (−70°) differs from the two trails in the image (nearly vertical, −89°).
+      - **No cataloged object passed near A or B while sunlit.** The closest was thousands of pixels away.
+      - The two vertical trails (x≈1000 bright, x≈1330 faint, with B on it) also match no object in the list. They may be objects not in this file, for example classified satellites with no public TLE. Two trails flying side by side, needing at least 1,100 km to be sunlit, fits the paired NOSS satellites, but this is an unconfirmed hypothesis.
+      - Log: `results/tle_match.log`
+    - Classified satellite matching (`tle_plane.py`, 2026-11-21, McCants `classfd.tle`, 451 objects, epoch 2026-11):
+      - With epochs seven months later, there is no way to know where each satellite was at the time. So only orbital planes were compared: does an orbit ring cross the field during the exposure, and if so, do its direction and sunlight match? The observer's motion from Earth's rotation during the exposure was included, and the method was validated on CZ-2D DEB from the public TLEs.
+      - The only orbits crossing the field were 13 StarShield satellites (about 580 km). All were in Earth's shadow, and their direction (−105°) differs from the trails (−89°).
+      - The closest NOSS pair, NOSS 3-5 (A/B), has its orbital plane about 15° away from the field. That is hard to explain with seven months of precession error, so **the NOSS hypothesis is rejected** (assuming no orbital maneuvers in between).
+      - Conclusion: neither flash A or B nor the two vertical trails match any object in the public or classified lists. The public file (8,916 objects) was downloaded from Space-Track `gp_history` filtered to apogee above 1,000 km (verified: minimum apogee in the file is 1,000 km). Objects left out never rise above 1,000 km, so along this line of sight, where 1,120 km was needed to be sunlit, they were all in shadow. **Every public object that could have been visible was checked.** What remains is an object not in any list (untracked or unpublished) or an aircraft.
+      - Log: `results/tle_plane.log`
+    - Brightness and size (`flash_phot.py`, `flash_size.py`, 2026-11-21; zero point from 198 Gaia DR3 stars, ±0.25 mag):
+      - Flash A is G 10.7 mag as a 300 s integrated equivalent (the peak is saturated, so it was actually brighter); B is 11.4 mag. If each lasted 1 second, that is 4.5 and 5.2 mag.
+      - Both trails are white, like stars, not the red and green of aircraft wingtip navigation lights.
+      - Trail object sizes (diffuse reflection, albedo 0.2) at 1,150 km altitude: the bright one about 4 mag and 7 m across, the faint one about 5 mag and 4 m across. Higher altitudes mean larger objects (about 19 m and 12 m at GPS altitude).
+      - Flash size (flat mirror reflection, reflectivity 0.9): to look round like a star the flash must last a few ms or less, which requires a mirror at least 20 cm across (at 1,150 km) to 60 cm (at geostationary orbit).
+      - It remains unexplained that an object this bright and this large appears in neither the public nor the classified list.
+    - Aircraft (fighter jet) hypothesis (2026-11-21, `results/jet_profile.log`): I also checked whether low-flying aircraft could explain it.
+      - The telescope is focused at infinity, so an object at distance L is blurred into a disk of about D/L radians for aperture D (a ring, with a central obstruction).
+      - Measured profile widths (FWHM, 2×2 binning): bright trail about 3.5″, faint trail ≤1.8″, flashes A and B 1.8–3.5″. All are much narrower than the stars (8.8″) and have a single sharp peak, not a flat or hollow profile.
+      - With a conservative aperture of 150–280 mm, a blur of 2–3.5″ or less requires a distance of at least about 10–30 km.
+      - Explaining the 288″ gap between the two trails as the wingspan of a fighter jet (about 10 m) requires a distance of about 7 km, which would blur them into rings 6–10″ across. And the color is white, not the red and green of navigation lights. → **The wingtip-light explanation is rejected.**
+      - Two aircraft each leaving a trail from above 10 km cannot be fully ruled out without knowing the exact aperture.
+- Satellite flares and short trails: M 42 (0011, 0013), Zeta Ophiuchi (0027, dotted), Flame Nebula (0161), Rosette (0224, faint and diffuse, uncertain).
+- Excluded:
+  - 141+ cosmic rays
+  - 51 sources that persist into neighboring frames
+  - 37 points on satellite trails
+  - 36 extended sources
+  - all of sh2-124 frame `_0100` (the mount shook)
 
-## 3. 궤적(인공위성·비행기·유성)
+## 3. Trails (satellites, aircraft, meteors)
 
-- 800px 이상인 긴 궤적이 105장의 프레임에서 113개 나왔습니다.
-- 많이 나온 타깃: M 42(14), Flame Nebula(12), M 33(10), Rosette(10).
-- 위성·비행기·유성 구분은 아직 하지 않았습니다.
+- 113 long trails (800 px or more) in 105 frames.
+- Most common targets: M 42 (14), Flame Nebula (12), M 33 (10), Rosette (10).
+- Trails have not yet been sorted into satellites, aircraft and meteors.
 
-## 4. 스태킹 (2026-11-23 추가)
+## 4. Stacking (added 2026-11-23)
 
-- 세션(연속 촬영 구간) 단위로 89개를 나눠 76개를 스태킹했습니다. 결과는 `H:siair\Stacks\<세션>\`에 있습니다.
-  - 리니어 결과와 후보정 결과가 각각 들어 있습니다.
-  - 18시~다음 날 06시 사이에 찍은 플랫을 같은 밤의 라이트 보정에 썼습니다.
-- 실패한 세션은 다음과 같습니다.
+- The data were split into 89 sessions (continuous imaging runs), and 76 were stacked. Results are in the stacks folder under `<session>/`.
+  - Each holds a linear result and a processed result.
+  - Flats taken between 18:00 and 06:00 were used to calibrate lights from the same night.
+- Failed sessions:
 
-  | 원인 | 세션 |
+  | Cause | Sessions |
   |---|---|
-  | 쓸 수 있는 프레임 0장 | M31 700mm, 63 Gem |
-  | 쓸 수 있는 프레임 1~2장 | M92, NGC 2264 ×3, test_p2 |
-  | 별 맞춤 실패 | C2025_R3 60s·30s, LDN 386 |
+  | 0 usable frames | M31 700mm, 63 Gem |
+  | 1–2 usable frames | M92, NGC 2264 ×3, test_p2 |
+  | Star registration failed | C2025_R3 60s and 30s, LDN 386 |
 
-- 2026-09-14_GAIA_208068134588948 스택은 좌표 정보(WCS)가 없어 아래 세 분석에서 모두 뺐습니다.
+- The 2026-09-14_GAIA_208068134588948 stack has no WCS, so it was left out of all three analyses below.
 
-## 5. 어두운 소행성 (shift-and-stack, GPU)
+## 5. Faint asteroids (shift-and-stack, GPU)
 
-- 방법:
-  - 세션을 최대 60분 구간으로 나눴습니다.
-  - 별을 지운 잔차 영상을 속도 격자를 따라 옮겨 가며 합산했습니다. 6px 이상 움직인 경우만 봤습니다.
-- 알려진 소행성 회수율:
+- Method:
+  - Sessions were split into chunks of up to 60 minutes.
+  - Star-subtracted residual images were shifted along a grid of velocities and summed. Only motions of 6 px or more were considered.
+- Recovery of known asteroids:
 
-  | 밝기(V) | 회수 |
+  | Brightness (V) | Recovered |
   |---|---|
-  | 16~17 | 4/4 |
-  | 17~18 | 8/13 |
-  | 18~19 | 17/65 |
+  | 16–17 | 4/4 |
+  | 17–18 | 8/13 |
+  | 18–19 | 17/65 |
 
-  따라서 실제 한계는 V≈18~18.5입니다.
-- 구간마다 잡음 분포의 꼬리를 맞춰, 거짓 경보가 구간당 0.05개가 되는 수준을 유의 문턱으로 정했습니다.
-- 이 문턱을 넘은 후보 42개를 사진으로 모두 확인했습니다. 모두 다음 중 하나였습니다.
-  - 가장자리 효과
-  - 밝은 별 주변 잔차
-  - 성운 무늬
-  - 위성 궤적 조각
-- **새 이동 천체: 0개**
+  So the real limit is about V≈18–18.5.
+- For each chunk the tail of the noise distribution was fitted, and the significance threshold was set where false alarms come to 0.05 per chunk.
+- All 42 candidates above this threshold were inspected visually. Each was one of:
+  - edge effects
+  - residuals around bright stars
+  - nebula structure
+  - pieces of satellite trails
+- **New moving objects: 0**
 
-## 6. 신성·초신성·변광성 (세션 스택 비교)
+## 6. Novae, supernovae and variable stars (comparing session stacks)
 
-- 별 목록 좌표를 Gaia DR3로 다시 맞췄습니다. 렌즈 왜곡(SIP 3차)까지 보정해 중앙 오차가 0.2~0.7″입니다.
-- **Gaia에 없는 점광원 8,133개 → 새로 나타난 천체 후보 0개**
-  - 다른 세션에서도 보이는 고정 천체: 750개
-  - 알려진 소행성과 일치: 80개
-  - 이번 세션에만 있음: 656개. 이 중 189개는 좌표가 정확한 곳에 있었습니다.
-  - 189개를 다른 세션 같은 자리에서 강제측광했습니다.
-    - 156개는 다른 세션에도 있었습니다(목록 맞춤에서 빠졌을 뿐).
-    - 나머지는 다음 중 하나였습니다.
-      - 위성 궤적
-      - 겹친 별
-      - 별 모양이 나쁜 스택: west veil 10-08은 늘어진 별, 09-18은 고리 모양 별
-- **세션 사이에 밝기가 바뀐 별 1,981개 → 새 변광성 0개**
-  - 강제측광으로 다시 확인했더니 45개가 남았습니다(|Δm|>0.4, 6σ 이상, 주변에 다른 별 없음).
-  - 33개는 VSX에 이미 등록된 변광성입니다.
-    - 오리온 젊은 별: AH Ori, TT Ori, V808 Ori, HY Ori, AS Ori 등
-    - 식쌍성: FN Cep, V1229 Cep 등
-    - YSO, RR Lyr
-  - 등록되지 않은 12개 중 11개는 NGC 6960(05-08 vs 08-07)입니다. 필터가 달라서 별 색에 따라 밝기 차이가 생긴 것입니다.
-  - 마지막 1개는 M101 안의 거대 HII 영역입니다. 퍼진 천체라 측광 조건에 따라 밝기가 달라 보입니다.
-  - 이로써 방법이 실제 변광성을 제대로 잡아낸다는 것도 확인됐습니다.
+- Star-list coordinates were re-fitted to Gaia DR3, including lens distortion (3rd-order SIP), for a median error of 0.2–0.7″.
+- **8,133 point sources not in Gaia → 0 new-object candidates**
+  - Fixed sources also seen in other sessions: 750
+  - Matches with known asteroids: 80
+  - Only in this session: 656, of which 189 fell where the coordinates are accurate.
+  - Forced photometry at the same positions in other sessions for those 189:
+    - 156 were present in other sessions too (they had only been missed in list matching).
+    - The rest were one of:
+      - satellite trails
+      - blended stars
+      - stacks with poor star shapes: west veil 10-08 (elongated stars), 09-18 (ring-shaped stars)
+- **1,981 stars changed brightness between sessions → 0 new variable stars**
+  - Re-checking with forced photometry left 45 (|Δm|>0.4, 6σ or more, no neighboring stars).
+  - 33 are variables already listed in VSX.
+    - Young stars in Orion: AH Ori, TT Ori, V808 Ori, HY Ori, AS Ori, ...
+    - Eclipsing binaries: FN Cep, V1229 Cep, ...
+    - YSOs, RR Lyr
+  - Of the 12 not listed, 11 are in NGC 6960 (05-08 vs 08-07). Different filters were used, so brightness differences depend on star color.
+  - The last one is a giant HII region in M101. It is extended, so its measured brightness depends on the photometry conditions.
+  - This also confirms the method catches real variable stars.
 
-## 7. 먼지·가스층 (IRIS 100µm, Planck 857GHz, Hα 지도 비교)
+## 7. Dust and gas (vs. IRIS 100 µm, Planck 857 GHz and Hα maps)
 
-- 플랫 보정한 스택 36개(대상별로 가장 깊은 것)를 별 제거 후 5′ 해상도로 맞춰 전천 지도와 비교했습니다.
-- 상관계수 예: M101 0.93/0.97, M33 0.90/0.95, NGC 7023 0.75/0.84, NGC 7293 0.86
-- 4σ 넘는 잔차 덩어리는 다음 중 하나였습니다.
-  - 대상 천체 자체(M82, M31 원반 등)
-  - 화면 가장자리 감광
-  - 밝은 별 헤일로
-  - 알려진 성운 안의 미세 구조(M42, IC 443, Horsehead·Flame, Veil, Rosette, M8, Cepheus Flare)
-- 설명이 애매한 5~6σ 덩어리 몇 개가 남았습니다.
-  - M5, M106, NGC 6960, M16, Rosette의 작은 Hα 덩어리
-  - Cepheus Flare G5.8 별 주변(반사광 추정)
-  - 모두 해상도와 평탄화 한계 수준입니다.
-- **결론: 이상 먼지·가스 구조 없음**
+- 36 flat-calibrated stacks (the deepest for each target) were star-removed, matched to 5′ resolution, and compared with all-sky maps.
+- Example correlation coefficients: M101 0.93/0.97, M33 0.90/0.95, NGC 7023 0.75/0.84, NGC 7293 0.86
+- Residual blobs above 4σ were one of:
+  - the target itself (M82, the disk of M31, ...)
+  - vignetting at the image edges
+  - halos around bright stars
+  - fine structure within known nebulae (M42, IC 443, Horsehead and Flame, Veil, Rosette, M8, Cepheus Flare)
+- A few ambiguous 5–6σ blobs remain:
+  - small Hα blobs in M5, M106, NGC 6960, M16 and Rosette
+  - around a G5.8 star in the Cepheus Flare (probably reflected light)
+  - all at the level of the resolution and flattening limits.
+- **Conclusion: no anomalous dust or gas structures**
 
-## 종합
+## Summary
 
-세 가지 탐색 모두에서 새 이상 천체는 찾지 못했습니다. 한계와 미처리 항목은 다음과 같습니다.
+None of the three searches found a new anomalous object. Limits and open items:
 
-- 소행성은 V≈18 정도까지 찾을 수 있습니다.
-- 세션 비교는 같은 대상을 2회 이상 찍은 시야만 가능합니다.
-- 스태킹 임시 파일은 원본 디스크가 아닌 로컬 SSD에 만들었습니다.
+- Asteroids can be found down to about V≈18.
+- Session comparison is only possible for fields imaged two or more times.
+- Temporary stacking files were written to a local SSD, not the raw-data disk.
 
-## 파일
+## Files
 
-- `results/tracklets_classified.json`, `results/report.csv`: 궤적 목록과 분류 결과
-- `results/recall.csv`: 시야 안에 있던 알려진 소행성별 검출 여부
-- `results/flashes.csv`, `results/streaks.csv`, `results/flash_cutouts/`, `results/review/`: 섬광·궤적 목록과 확인용 이미지
-- 스태킹: `stack/run_stack.py`. 소행성: `analysis/run_ssa.py` → `ssa_sig.py` → `ssa_vet.py`. 세션 비교: `analysis/transient.py` (catalog → compare) → `refit_wcs.py` → `vet_transient.py` → `vet_local.py` → `vet_forced.py` → `vet_var.py` → `vet_var_img.py`. 먼지·가스: `analysis/dustgas.py` → `dustgas_blobs.py` → `dustgas_ident.py`
-- 결과: `analysis/results/` (ssa_significant.json, ssa_vet/, transient/var_keep.json, transient/var_keep_montage.png, transient/only_forced.json, dustgas/)
-- 파이프라인 실행 순서: `extract.py` → `link.py` → `verify.py` → `skyfixed.py` → `verify_events.py` → `recall.py`
+- `results/tracklets_classified.json`, `results/report.csv`: trail list and classification
+- `results/recall.csv`: whether each known asteroid in the field was detected
+- `results/flashes.csv`, `results/streaks.csv`, `results/flash_cutouts/`, `results/review/`: flash and trail lists and review images
+- Stacking: `stack/run_stack.py`. Asteroids: `analysis/run_ssa.py` → `ssa_sig.py` → `ssa_vet.py`. Session comparison: `analysis/transient.py` (catalog → compare) → `refit_wcs.py` → `vet_transient.py` → `vet_local.py` → `vet_forced.py` → `vet_var.py` → `vet_var_img.py`. Dust and gas: `analysis/dustgas.py` → `dustgas_blobs.py` → `dustgas_ident.py`
+- Results: `analysis/results/` (ssa_significant.json, ssa_vet/, transient/var_keep.json, transient/var_keep_montage.png, transient/only_forced.json, dustgas/)
+- Frame pipeline order: `extract.py` → `link.py` → `verify.py` → `skyfixed.py` → `verify_events.py` → `recall.py`
