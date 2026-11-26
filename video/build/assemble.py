@@ -11,7 +11,9 @@ from scenes import SCENES, MUSIC, SECTION_MUSIC
 
 OUT = os.path.join(HERE, 'out'); SEG = os.path.join(OUT, 'seg'); os.makedirs(SEG, exist_ok=True)
 FPS, FADE = 30, 0.4
-meta = json.load(open(os.path.join(OUT, 'tts', 'meta.json'), encoding='utf-8'))
+# TTS_DIR: 내레이션 폴더(out 아래, 기본 tts), OUT_NAME: 결과 파일 이름(기본 draft_en)
+TTS = os.environ.get('TTS_DIR', 'tts'); NAME = os.environ.get('OUT_NAME', 'draft_en')
+meta = json.load(open(os.path.join(OUT, TTS, 'meta.json'), encoding='utf-8'))
 man = json.load(open(os.path.join(OUT, 'frames', 'manifest.json'), encoding='utf-8'))
 ENC = ['-c:v', 'libx264', '-preset', 'veryfast', '-crf', '20', '-pix_fmt', 'yuv420p', '-r', str(FPS)]
 QSTEP, QHOLD, LAST = 3.4, 6.0, 7.0
@@ -40,6 +42,8 @@ for m, item in zip(meta, man):
         vf = (f"zoompan=z='1+0.07*on/{n}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d={n}:s=1920x1080:fps={FPS},"
               f"{fades(d)}")
         ff(['-loop', '1', '-framerate', str(FPS), '-t', f'{d:.3f}', '-i', item['frame'], '-vf', vf, '-frames:v', str(n)] + ENC + [out])
+    elif kind == 'pan':          # pan.py가 미리 렌더링 (페이드 포함)
+        ff(['-i', os.path.join(OUT, 'pan', f'{i:02d}.mp4'), '-frames:v', str(n)] + ENC + [out])
     elif kind == 'motion':
         ff(['-i', item['motion'], '-vf', fades(d), '-frames:v', str(n)] + ENC + [out])
     elif kind == 'scroll':
@@ -74,7 +78,7 @@ ff(['-f', 'concat', '-safe', '0', '-i', lst, '-c', 'copy', video])
 SRN = 24000
 narr = np.zeros(int(total * SRN) + SRN, np.float32)
 for m, s in zip(meta, starts):
-    p = os.path.join(OUT, 'tts', f"{m['i']:02d}.wav")
+    p = os.path.join(OUT, TTS, f"{m['i']:02d}.wav")
     if m['dur'] and os.path.exists(p):
         a, _ = sf.read(p, dtype='float32'); k = int(s * SRN); narr[k:k + len(a)] += a
 sf.write(os.path.join(OUT, 'narration.wav'), narr, SRN)
@@ -136,11 +140,11 @@ for m, s in zip(meta, starts):
         srt.append((s + a, s + b + 0.15, text))
 open(os.path.join(OUT, 'subs.ass'), 'w', encoding='utf-8').write('\n'.join(ass) + '\n')
 def srt_ts(t): return f'{int(t // 3600):02d}:{int(t % 3600 // 60):02d}:{int(t % 60):02d},{int(t * 1000 % 1000):03d}'
-open(os.path.join(REPO, 'video', 'draft_en.srt'), 'w', encoding='utf-8').write(
+open(os.path.join(REPO, 'video', NAME + '.srt'), 'w', encoding='utf-8').write(
     ''.join(f'{k + 1}\n{srt_ts(a)} --> {srt_ts(b)}\n{t}\n\n' for k, (a, b, t) in enumerate(srt)))
 
 # 최종 합치기
-final = os.path.join(REPO, 'video', 'draft_en.mp4')
+final = os.path.join(REPO, 'video', NAME + '.mp4')
 r = subprocess.run(['ffmpeg', '-y', '-hide_banner', '-loglevel', 'error', '-i', 'video_noaudio.mp4', '-i', 'narration.wav', '-i', 'music_bed.wav',
                     '-filter_complex', '[1:a]aresample=48000,pan=stereo|c0=c0|c1=c0[n];[2:a]aresample=48000[m];[n][m]amix=inputs=2:normalize=0:duration=first[a];[0:v]ass=subs.ass[v]',
                     '-map', '[v]', '-map', '[a]', '-t', f'{total:.2f}'] + ENC + ['-c:a', 'aac', '-b:a', '192k', final],

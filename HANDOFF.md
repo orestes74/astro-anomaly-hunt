@@ -21,6 +21,7 @@ set ASTRO_PHOTOS=<사진 폴더>
 <kokoro venv python> video/build/tts.py
 python video/build/build_visuals.py
 python video/build/motion.py
+python video/build/pan.py        # 사진 확대·이동 장면 (TTS_DIR을 assemble.py와 같게)
 python video/build/assemble.py
 ```
 - 출력: `video/build/out/` (중간 파일), `video/draft_en.mp4`
@@ -30,7 +31,7 @@ python video/build/assemble.py
 ## 저장소에 없는 파일 (원래 PC에만 있음)
 | 무엇 | 위치 |
 |---|---|
-| 직접 보정한 사진 (Flame, Jellyfish, M45, Rosette, SH2-124, Shark, Veil, SH2-245, IC1318) | `ASTRO_PHOTOS` 폴더 |
+| 직접 보정한 사진 (Flame, Jellyfish, M45, IC1318. 이전 영상에 나온 사진은 쓰지 않음) | `ASTRO_PHOTOS` 폴더 |
 | 폴더 화면 캡처, 영어 애니메이션, M45 보정본 | `video/build/assets/` |
 | 생성 음악 WAV | `video/music/` |
 | 음성·장면·모션 중간 파일 | `video/build/out/` |

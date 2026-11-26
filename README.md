@@ -108,7 +108,7 @@ python astrohunt.py --retry-failed   # 예전에 실패한 세션 다시 스태�
 | `m45.py` | 스택 보정 예시: 배경 기울기 제거 → Gaia 색 지수 기준 색 보정 → 색 보존 asinh 늘리기 |
 | `assemble.py` | 장면 클립 + 내레이션 + 배경음악(내레이션 중 자동으로 작게) + 자막 → `video/draft_en.mp4`, `draft_en.srt` |
 
-순서: `tts.py` → `build_visuals.py` → `motion.py` → `assemble.py`. 직접 보정한 사진은 `ASTRO_PHOTOS` 환경변수 폴더에서 읽습니다. 영상·음악·사진은 용량과 저작권 때문에 저장소에 넣지 않았습니다.
+순서: `tts.py` → `build_visuals.py` → `motion.py` → `pan.py` → `assemble.py`. 직접 보정한 사진은 `ASTRO_PHOTOS` 환경변수 폴더에서 읽습니다. 영상·음악·사진은 용량과 저작권 때문에 저장소에 넣지 않았습니다.
 
 ## 사용한 도구와 데이터
 - 스태킹: Siril 1.4.5

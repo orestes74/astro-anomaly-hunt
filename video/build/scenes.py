@@ -10,28 +10,33 @@
   ('quote', 줄 목록, 배경)   내레이션 없는 자막 장면
   ('cardimg', 제목, 본문, 배경)  어둡게 처리한 사진 위 글자 카드
   ('scroll', 경로)           긴 화면 캡처를 위에서 아래로 천천히 스크롤
+  ('pan', 경로, 키프레임)    직접 보정한 사진을 확대·이동하며 보여 줌 (assemble.py의 render_pan)
+                             키프레임: [(시간 비율 0~1, 확대 배율, 중심 x 0~1, 중심 y 0~1), ...]
+                             확대 1.0 = 사진에 들어가는 가장 큰 16:9 화면
+  ('pan', 경로, 'cont')      바로 앞 장면의 사진 움직임을 끊지 않고 이어 감 (장면 사이 페이드 없음)
 """
 
 S = 'images/stacks/'
 import os
 U = os.environ.get('ASTRO_PHOTOS', 'video/build/photos').replace('\\', '/').rstrip('/') + '/'   # 직접 보정한 사진 폴더 (절대경로 권장)
-FLAME, JELLY, M45, ROSE, SH124, SHARK = (U + 'Flame_Nebula_30s_color.jpg', U + 'SH2_248_jellyfish_30s60s_final.jpg',
-    U + 'r_pp_M45_stacked.jpg', U + 'Rosette_natural.jpg', U + 'SH2_124_bright3_natural.jpg', U + 'LDN1235_Shark_final.jpg')
-VEIL, MWDUST = U + 'west_veil_1009_reference_final.jpg', U + 'SH2_245_reference_style.jpg'
+# 이전 영상(IC447 보정, RASA11 수리, SH2-124 보정, 스태킹 타임랩스)에 나온 사진은 쓰지 않음
+#   빠진 사진: Rosette_natural, LDN1235_Shark_final, west_veil_1009_reference_final, SH2_245_reference_style, SH2_124_bright3_natural
+FLAME, JELLY, M45, IC1318 = (U + 'Flame_Nebula_30s_color.jpg', U + 'SH2_248_jellyfish_30s60s_final.jpg',
+    U + 'r_pp_M45_stacked.jpg', U + 'r_pp_IC1318_Butterfly_stacked.jpg')
 SCENES = [
     # 1. The dream
-    (1, ('img', FLAME), [
+    (1, ('pan', FLAME, [(0, 1.15, .50, .50), (1, 1.55, .40, .33)]), [   # 불꽃성운 쪽으로 다가감
         "Anyone who photographs the night sky eventually has this dream."]),
-    (1, ('img', JELLY), [
+    (1, ('pan', JELLY, [(0, 1.75, .53, .52), (1, 1.10, .52, .50)]), [   # 해파리에서 물러남
         "What if one of my photos holds a star that no one has ever seen?"]),
-    (1, ('img', M45), [
+    (1, ('pan', M45, [(0, 1.55, .30, .45), (1, 1.45, .66, .52)]), [   # 왼쪽에서 오른쪽으로 훑음 (다음 장면까지)
         "What if a nameless asteroid is drifting through the frame?"]),
-    (1, ('img', ROSE), [
+    (1, ('pan', M45, 'cont'), [
         "Or... what if it captured something no one can explain?"]),
-    (1, ('img', SHARK), [
+    (1, ('pan', IC1318, [(0, 1.9, .30, .38), (.45, 1.5, .55, .45), (1, 1.0, .50, .50)]), [   # 암흑대에서 시작해 은하수 전체로 (다음 장면까지)
         "When I was in elementary school, E.T. was playing in theaters.",
         "I was the kid who carried a little E.T. doll on the tip of a pencil."]),
-    (1, ('img', SH124), [
+    (1, ('pan', IC1318, 'cont'), [
         "Korea was only just racing into industrialization back then, and the night sky was still dark.",
         "Whenever I looked up, the Milky Way flowed across it in a violet haze.",
         "And under it, I always wondered the same thing.",
@@ -43,7 +48,7 @@ SCENES = [
     (1, ('scroll', 'video/build/assets/folders.webp'), [
         "So, like most of us, I picked a few pretty pictures to process, and buried the rest on a hard drive.",
         "Nearly a year of imaging. Over five thousand frames, just sleeping there."]),
-    (1, ('img', VEIL), [
+    (1, ('pan', FLAME, [(0, 1.9, .36, .72), (.55, 1.6, .40, .34), (1, 1.05, .50, .50)]), [   # 말머리성운에서 불꽃성운으로, 마지막에 전체
         "But is that really the end of the story?",
         "Somewhere in those five thousand frames, could there still be something no one has seen?",
         "Today, I want to share what it actually takes to turn that childhood dream into reality. Because I tried."]),
@@ -180,10 +185,10 @@ SCENES = [
         "But the truth is, we don't know what it was."]),
 
     # 7. Your turn
-    (7, ('img', U + 'r_pp_IC1318_Butterfly_stacked.jpg'), [
+    (7, ('pan', JELLY, [(0, 1.15, .50, .50), (1, 1.6, .58, .62)]), [   # 해파리 아래 가장자리로 다가감
         "The dream of finding a new star sounds grand. But it starts on your own hard drive.",
         "Just by looking again at nearly a year of photos, I met ten asteroids, a comet, thirty-three variable stars, and one mysterious flash."]),
-    (7, ('img', SH124), [
+    (7, ('pan', IC1318, [(0, 1.45, .62, .40), (1, 1.0, .50, .50)]), [   # 도입부 은하수 사진으로 돌아옴
         "This time, I didn't get to name a new star.",
         "But that kid with the E.T. doll on a pencil, looking up at the Milky Way, asking, does that star have a name?",
         "Now, I finally have a way to search for the answer myself."]),
@@ -199,8 +204,8 @@ SCENES = [
         "Through space, the universe engulfs me like a point.",
         "Through thought, I comprehend the universe.",
         "",
-        "Blaise Pascal, Pensées"], MWDUST), []),
-    (7, ('img', FLAME), []),
+        "Blaise Pascal, Pensées"], IC1318), []),
+    (7, ('pan', FLAME, [(0, 1.3, .45, .45), (1, 1.0, .50, .50)]), []),
 ]
 
 # 모션 그래픽으로 바꾼 장면 (motion.py가 내레이션 길이에 맞춰 렌더링)
@@ -226,8 +231,7 @@ SCENES = COLD_OPEN + SCENES
 SCENES = [(a, ('vid', v[1].replace('animations/', 'video/build/assets/anim_en/')) if v[0] == 'vid' else v, l) for a, v, l in SCENES]
 
 MUSIC = {   # 섹션별 배경음악 (video/music 기준)
-    'main': 'sicilienne_c_flute_piano_strings_s42.wav',
-    'mystery': 'sicilienne_b_cello_piano_s11.wav',
+    'main': 'piano_preview/moon_p2_s57.wav',      # 드뷔시풍 솔로 피아노 (ACE-Step), 영상 전체에 한 곡
 }
-SECTION_MUSIC = {0: 'mystery', 1: 'main', 2: 'main', 3: 'main', 4: 'main', 5: 'main', 6: 'mystery', 7: 'main'}
+SECTION_MUSIC = {k: 'main' for k in range(8)}
 VOICE, SPEED = 'am_michael', 0.95

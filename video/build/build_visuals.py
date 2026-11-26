@@ -259,6 +259,8 @@ for i, (sec, vis, lines) in enumerate(SCENES):
         video_bg(label_for(vis[1])).save(p); item['frame'] = p; item['video'] = os.path.join(REPO, vis[1])
     elif kind == 'quote':
         item['frames'] = quote_frames(vis[1], vis[2], i)
+    elif kind == 'pan':          # 화면은 assemble.py가 원본 사진에서 바로 렌더링
+        item['photo'] = os.path.join(REPO, vis[1]); item['keys'] = vis[2]
     elif kind == 'skip':
         pass
     elif kind == 'motion':
