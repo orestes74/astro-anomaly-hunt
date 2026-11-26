@@ -1,5 +1,7 @@
 """M51 0019 섬광 A/B를 2026-04-16~17 TLE와 대조.
-노출 시간(300초) 동안 모든 위성을 0.5초 간격으로 전파해 화면 안을 지나간 것, 섬광 위치에 가장 가까이 온 것, 햇빛을 받았는지를 계산."""
+노출 시간(300초) 동안 모든 위성을 0.5초 간격으로 전파해 화면 안을 지나간 것, 섬광 위치에 가장 가까이 온 것, 햇빛을 받았는지를 계산.
+TLE: Space-Track gp_history (epoch 2026-04-16~17, 원지점 1,000 km 초과). 받는 법: python get_tle.py public 2026-04-16 2026-04-18 1000
+     (지난 날짜 궤도는 Space-Track에만 있음, 무료 계정 필요). 다른 섬광에 쓰려면 F, FLASH, TLE 경로를 바꿉니다."""
 import sys, numpy as np
 from collections import defaultdict
 from astropy.io import fits

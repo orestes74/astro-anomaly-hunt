@@ -144,10 +144,15 @@ open(os.path.join(REPO, 'video', NAME + '.srt'), 'w', encoding='utf-8').write(
     ''.join(f'{k + 1}\n{srt_ts(a)} --> {srt_ts(b)}\n{t}\n\n' for k, (a, b, t) in enumerate(srt)))
 
 # 최종 합치기
+# 기본: 자막을 화면에 씌우지 않음. 자막은 같은 이름의 SRT로 따로 (유튜브 업로드용, 플레이어도 자동으로 읽음)
+# BURN_SUBS=1 이면 예전처럼 화면에 자막을 씌움
 final = os.path.join(REPO, 'video', NAME + '.mp4')
-r = subprocess.run(['ffmpeg', '-y', '-hide_banner', '-loglevel', 'error', '-i', 'video_noaudio.mp4', '-i', 'narration.wav', '-i', 'music_bed.wav',
-                    '-filter_complex', '[1:a]aresample=48000,pan=stereo|c0=c0|c1=c0[n];[2:a]aresample=48000[m];[n][m]amix=inputs=2:normalize=0:duration=first[a];[0:v]ass=subs.ass[v]',
-                    '-map', '[v]', '-map', '[a]', '-t', f'{total:.2f}'] + ENC + ['-c:a', 'aac', '-b:a', '192k', final],
-                   cwd=OUT, capture_output=True, text=True)
+AMIX = '[1:a]aresample=48000,pan=stereo|c0=c0|c1=c0[n];[2:a]aresample=48000[m];[n][m]amix=inputs=2:normalize=0:duration=first[a]'
+args = ['ffmpeg', '-y', '-hide_banner', '-loglevel', 'error', '-i', 'video_noaudio.mp4', '-i', 'narration.wav', '-i', 'music_bed.wav']
+if os.environ.get('BURN_SUBS') == '1':
+    args += ['-filter_complex', AMIX + ';[0:v]ass=subs.ass[v]', '-map', '[v]', '-map', '[a]', '-t', f'{total:.2f}'] + ENC
+else:
+    args += ['-filter_complex', AMIX, '-map', '0:v', '-map', '[a]', '-t', f'{total:.2f}', '-c:v', 'copy']
+r = subprocess.run(args + ['-c:a', 'aac', '-b:a', '192k', final], cwd=OUT, capture_output=True, text=True)
 if r.returncode: raise RuntimeError(r.stderr[-2000:])
 print('done', final)
