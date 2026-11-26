@@ -1,4 +1,4 @@
-Is there a star no one has ever seen, hiding in my own photos?
+I went looking for a star no one has ever seen, hiding in my own photos. I didn't find one. But I did find one flash I still can't explain.
 
 Nearly a year of amateur astrophotography — over five thousand frames, 89 sessions — re-analyzed for anything that isn't on the map of the sky: moving objects (asteroids, comets), changing objects (novae, supernovae, variable stars), and faint dust and gas.
 
@@ -16,8 +16,8 @@ https://github.com/orestes74/astro-anomaly-hunt
 
 CHAPTERS
 0:00 A flash near M51
-0:23 The dream
-2:15 What can an amateur find?
+0:24 The dream
+2:16 What can an amateur find?
 3:33 The method, step by step
 7:00 What you can try
 8:25 The automation program
@@ -25,8 +25,8 @@ CHAPTERS
 11:29 Your turn
 
 DATA & TOOLS
-ESA Gaia DR3 · IMCCE SkyBoT · AAVSO VSX · NASA/IPAC NED · NASA SkyView (IRIS, Planck, H-alpha) · Space-Track · McCants classfd
+ESA Gaia DR3 · IMCCE SkyBoT · AAVSO VSX · NASA/IPAC NED · NASA SkyView (IRIS, Planck, H-alpha) · Space-Track (historical satellite orbits) · McCants classfd (classified satellites)
 Stacking: Siril · Analysis: Python (astropy, numpy, PyTorch)
-Narration: Kokoro TTS · Music: generated with ACE-Step
+Narration: Kokoro TTS, converted to my own voice with Chatterbox · Music: solo piano generated with ACE-Step
 
 #astrophotography #asteroid #astronomy #citizenscience #opensource
