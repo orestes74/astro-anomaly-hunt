@@ -14,7 +14,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from scenes import SCENES
 
-OUT = os.path.join(HERE, 'out', 'motion'); os.makedirs(OUT, exist_ok=True)
+K = 2 if os.environ.get('UHD') == '1' else 1      # UHD=1: 3840x2160 (최종본). matplotlib dpi만 키우면 글자·선이 같이 커짐
+OUT = os.path.join(HERE, 'out', 'motion' + ('_4k' if K == 2 else '')); os.makedirs(OUT, exist_ok=True)
 FPS = 30
 BG = np.array((9, 13, 26)) / 255; TOP = np.array((16, 22, 44)) / 255
 GOLD = np.array((232, 194, 122)) / 255; FG = np.array((236, 238, 245)) / 255; DIM = np.array((150, 160, 185)) / 255
@@ -43,8 +44,8 @@ def text(ax, x, y, s, size, color=FG, alpha=1, serif=False, ha='center', va='cen
 def render(i, dur, draw):
     n = int(round(dur * FPS))
     path = os.path.join(OUT, f'{i:02d}.mp4')
-    fig = plt.figure(figsize=(19.2, 10.8), dpi=100)
-    p = subprocess.Popen(['ffmpeg', '-y', '-loglevel', 'error', '-f', 'rawvideo', '-pix_fmt', 'rgba', '-s', '1920x1080', '-r', str(FPS),
+    fig = plt.figure(figsize=(19.2, 10.8), dpi=100 * K)
+    p = subprocess.Popen(['ffmpeg', '-y', '-loglevel', 'error', '-f', 'rawvideo', '-pix_fmt', 'rgba', '-s', f'{1920 * K}x{1080 * K}', '-r', str(FPS),
                           '-i', '-', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '18', '-pix_fmt', 'yuv420p', path], stdin=subprocess.PIPE)
     for f in range(n):
         fig.clf(); ax = fig.add_axes([0, 0, 1, 1]); ax.set_xlim(0, 192); ax.set_ylim(0, 108); ax.axis('off')
@@ -312,7 +313,7 @@ MOTIONS = {'three': m_three, 'move': m_move, 'change': m_change, 'spread': m_spr
            'count451': m_count(451, 'classified satellites tracked by amateur observers')}
 
 if __name__ == '__main__':
-    meta = json.load(open(os.path.join(HERE, 'out', 'tts', 'meta.json'), encoding='utf-8'))
+    meta = json.load(open(os.path.join(HERE, 'out', os.environ.get('TTS_DIR', 'tts'), 'meta.json'), encoding='utf-8'))
     only = {int(a) for a in sys.argv[1:]}
     for i, ((sec, vis, lines), m) in enumerate(zip(SCENES, meta)):
         if vis[0] != 'motion' or (only and i not in only): continue

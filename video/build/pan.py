@@ -2,16 +2,18 @@
 같은 사진이 이어지는 장면('cont')은 한 그룹으로 묶어 움직임이 끊기지 않게 하고,
 그룹의 처음에만 페이드 인, 끝에만 페이드 아웃을 넣습니다.
 실행: python pan.py [장면 번호 ...]   (opencv, scipy 필요. build_visuals.py와 tts.py 다음, assemble.py 전)
-환경변수: TTS_DIR (assemble.py와 같게, 기본 tts), PAN_W·PAN_H (기본 1920x1080, 최종본은 3840x2160)
+환경변수: TTS_DIR (assemble.py와 같게, 기본 tts), UHD=1 (3840x2160 최종본, out/pan_4k에 저장)
 """
 import os, sys, json, subprocess
 import numpy as np, cv2
 from scipy.interpolate import PchipInterpolator
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-OUT = os.path.join(HERE, 'out'); DST = os.path.join(OUT, 'pan'); os.makedirs(DST, exist_ok=True)
+K = 2 if os.environ.get('UHD') == '1' else 1      # UHD=1: 3840x2160 (최종본)
+SUF = '_4k' if K == 2 else ''
+OUT = os.path.join(HERE, 'out'); DST = os.path.join(OUT, 'pan' + SUF); os.makedirs(DST, exist_ok=True)
 FPS, FADE, LAST = 30, 0.4, 7.0                       # assemble.py와 같은 값
-PAN_W, PAN_H = int(os.environ.get('PAN_W', 1920)), int(os.environ.get('PAN_H', 1080))
+PAN_W, PAN_H = 1920 * K, 1080 * K
 ENC = ['-c:v', 'libx264', '-preset', 'veryfast', '-crf', '18', '-pix_fmt', 'yuv420p', '-r', str(FPS)]
 TTS = os.environ.get('TTS_DIR', 'tts')
 
@@ -50,7 +52,7 @@ def render(src, keys, D, t0, t1, out, fade_in, fade_out):
 
 if __name__ == '__main__':
     meta = json.load(open(os.path.join(OUT, TTS, 'meta.json'), encoding='utf-8'))
-    man = json.load(open(os.path.join(OUT, 'frames', 'manifest.json'), encoding='utf-8'))
+    man = json.load(open(os.path.join(OUT, 'frames' + SUF, 'manifest.json'), encoding='utf-8'))
     only = {int(a) for a in sys.argv[1:]}
     groups, g = [], None
     for m, item in zip(meta, man):

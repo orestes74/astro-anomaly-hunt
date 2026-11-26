@@ -9,12 +9,14 @@ REPO = os.path.abspath(os.path.join(HERE, '..', '..'))
 sys.path.insert(0, HERE)
 from scenes import SCENES, MUSIC, SECTION_MUSIC
 
-OUT = os.path.join(HERE, 'out'); SEG = os.path.join(OUT, 'seg'); os.makedirs(SEG, exist_ok=True)
+K = 2 if os.environ.get('UHD') == '1' else 1      # UHD=1: 3840x2160 최종본 (중간 파일은 *_4k 폴더)
+SUF = '_4k' if K == 2 else ''; VW, VH = 1920 * K, 1080 * K
+OUT = os.path.join(HERE, 'out'); SEG = os.path.join(OUT, 'seg' + SUF); os.makedirs(SEG, exist_ok=True)
 FPS, FADE = 30, 0.4
 # TTS_DIR: 내레이션 폴더(out 아래, 기본 tts), OUT_NAME: 결과 파일 이름(기본 draft_en)
 TTS = os.environ.get('TTS_DIR', 'tts'); NAME = os.environ.get('OUT_NAME', 'draft_en')
 meta = json.load(open(os.path.join(OUT, TTS, 'meta.json'), encoding='utf-8'))
-man = json.load(open(os.path.join(OUT, 'frames', 'manifest.json'), encoding='utf-8'))
+man = json.load(open(os.path.join(OUT, 'frames' + SUF, 'manifest.json'), encoding='utf-8'))
 ENC = ['-c:v', 'libx264', '-preset', 'veryfast', '-crf', '20', '-pix_fmt', 'yuv420p', '-r', str(FPS)]
 QSTEP, QHOLD, LAST = 3.4, 6.0, 7.0
 
@@ -39,21 +41,21 @@ for m, item in zip(meta, man):
         continue
     n = int(round(d * FPS))
     if kind == 'img':
-        vf = (f"zoompan=z='1+0.07*on/{n}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d={n}:s=1920x1080:fps={FPS},"
+        vf = (f"zoompan=z='1+0.07*on/{n}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d={n}:s={VW}x{VH}:fps={FPS},"
               f"{fades(d)}")
         ff(['-loop', '1', '-framerate', str(FPS), '-t', f'{d:.3f}', '-i', item['frame'], '-vf', vf, '-frames:v', str(n)] + ENC + [out])
     elif kind == 'pan':          # pan.py가 미리 렌더링 (페이드 포함)
-        ff(['-i', os.path.join(OUT, 'pan', f'{i:02d}.mp4'), '-frames:v', str(n)] + ENC + [out])
+        ff(['-i', os.path.join(OUT, 'pan' + SUF, f'{i:02d}.mp4'), '-frames:v', str(n)] + ENC + [out])
     elif kind == 'motion':
         ff(['-i', item['motion'], '-vf', fades(d), '-frames:v', str(n)] + ENC + [out])
     elif kind == 'scroll':
-        vf = f"crop=1920:1080:0:'(ih-1080)*min(max((t-1)/({d:.3f}-2),0),1)',{fades(d)}"
+        vf = f"crop={VW}:{VH}:0:'(ih-{VH})*min(max((t-1)/({d:.3f}-2),0),1)',{fades(d)}"
         ff(['-loop', '1', '-framerate', str(FPS), '-t', f'{d:.3f}', '-i', item['frame'], '-vf', vf, '-frames:v', str(n)] + ENC + [out])
     elif kind in ('card', 'ph', 'gen', 'cardimg'):
         ff(['-loop', '1', '-framerate', str(FPS), '-t', f'{d:.3f}', '-i', item['frame'],
-            '-vf', f'scale=1920:1080,{fades(d)}', '-frames:v', str(n)] + ENC + [out])
+            '-vf', f'scale={VW}:{VH},{fades(d)}', '-frames:v', str(n)] + ENC + [out])
     elif kind == 'vid':
-        fc = (f"[1:v]fps={FPS},scale=-2:760:flags=neighbor[a];[0:v][a]overlay=(W-w)/2:150,{fades(d)}[v]")
+        fc = (f"[1:v]fps={FPS},scale=-2:{760 * K}:flags=neighbor[a];[0:v][a]overlay=(W-w)/2:{150 * K},{fades(d)}[v]")
         ff(['-loop', '1', '-framerate', str(FPS), '-t', f'{d:.3f}', '-i', item['frame'],
             '-stream_loop', '-1', '-i', item['video'], '-filter_complex', fc, '-map', '[v]', '-frames:v', str(n)] + ENC + [out])
     elif kind == 'quote':
@@ -62,16 +64,16 @@ for m, item in zip(meta, man):
             for k, p in enumerate(item['frames']):
                 f.write(f"file '{p}'\nduration {QHOLD if k == len(item['frames']) - 1 else QSTEP}\n")
             f.write(f"file '{item['frames'][-1]}'\n")
-        ff(['-f', 'concat', '-safe', '0', '-i', lst, '-vf', f'fps={FPS},scale=1920:1080,{fades(d)}', '-frames:v', str(int(round(d * FPS)))] + ENC + [out])
+        ff(['-f', 'concat', '-safe', '0', '-i', lst, '-vf', f'fps={FPS},scale={VW}:{VH},{fades(d)}', '-frames:v', str(int(round(d * FPS)))] + ENC + [out])
     print(i, kind, f'{d:.1f}s', flush=True)
 
 starts = np.concatenate([[0], np.cumsum(durs)[:-1]]); total = float(sum(durs))
 print('total', round(total / 60, 2), 'min')
 
 # 영상 이어 붙이기
-lst = os.path.join(OUT, 'segments.txt')
+lst = os.path.join(OUT, f'segments{SUF}.txt')
 open(lst, 'w').write(''.join(f"file '{s}'\n" for s in segs))
-video = os.path.join(OUT, 'video_noaudio.mp4')
+video = os.path.join(OUT, f'video_noaudio{SUF}.mp4')
 ff(['-f', 'concat', '-safe', '0', '-i', lst, '-c', 'copy', video])
 
 # 내레이션 트랙 (24 kHz)
@@ -148,7 +150,7 @@ open(os.path.join(REPO, 'video', NAME + '.srt'), 'w', encoding='utf-8').write(
 # BURN_SUBS=1 이면 예전처럼 화면에 자막을 씌움
 final = os.path.join(REPO, 'video', NAME + '.mp4')
 AMIX = '[1:a]aresample=48000,pan=stereo|c0=c0|c1=c0[n];[2:a]aresample=48000[m];[n][m]amix=inputs=2:normalize=0:duration=first[a]'
-args = ['ffmpeg', '-y', '-hide_banner', '-loglevel', 'error', '-i', 'video_noaudio.mp4', '-i', 'narration.wav', '-i', 'music_bed.wav']
+args = ['ffmpeg', '-y', '-hide_banner', '-loglevel', 'error', '-i', f'video_noaudio{SUF}.mp4', '-i', 'narration.wav', '-i', 'music_bed.wav']
 if os.environ.get('BURN_SUBS') == '1':
     args += ['-filter_complex', AMIX + ';[0:v]ass=subs.ass[v]', '-map', '[v]', '-map', '[a]', '-t', f'{total:.2f}'] + ENC
 else:

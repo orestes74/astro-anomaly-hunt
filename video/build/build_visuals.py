@@ -14,11 +14,13 @@ REPO = os.path.abspath(os.path.join(HERE, '..', '..'))
 sys.path.insert(0, HERE)
 from scenes import SCENES
 
-OUT = os.path.join(HERE, 'out', 'frames'); os.makedirs(OUT, exist_ok=True)
-W, H = 1920, 1080
+K = 2 if os.environ.get('UHD') == '1' else 1      # UHD=1: 3840x2160 (최종본)
+SUF = '_4k' if K == 2 else ''
+OUT = os.path.join(HERE, 'out', 'frames' + SUF); os.makedirs(OUT, exist_ok=True)
+W, H = 1920 * K, 1080 * K
 BG = (9, 13, 26); GOLD = (232, 194, 122); FG = (236, 238, 245); DIM = (150, 160, 185); ORANGE = (255, 140, 40)
 F = r'C:\Windows\Fonts'
-def font(name, size): return ImageFont.truetype(os.path.join(F, name), size)
+def font(name, size): return ImageFont.truetype(os.path.join(F, name), size * K)
 TITLE, BODY, MONO = 'georgia.ttf', 'segoeui.ttf', 'consola.ttf'
 
 def bg_gradient():
@@ -43,7 +45,7 @@ def place_image(path, pad=0):
     im = Image.open(os.path.join(REPO, path)).convert('RGB')
     if path.endswith('M51_섬광_일직선.png'):        # 한글 제목을 영어로 덮어쓰기
         d = ImageDraw.Draw(im); d.rectangle([0, 0, im.width, 50], fill='white')
-        f1, f2 = font(BODY, 17), font(BODY, 16)
+        f1, f2 = (ImageFont.truetype(os.path.join(F, BODY), s) for s in (17, 16))   # 원본 그림 크기 기준 (K 무관)
         t = 'M51 frame 0019: three points on one straight line (red dashed)'
         d.text(((im.width - d.textlength(t, font=f1)) / 2, 3), t, font=f1, fill='black')
         for cx, t in ((207, 'Flash B'), (605, 'Flash A'), (1002, 'Trail C')):
@@ -64,11 +66,11 @@ def card(title, body):
     n = title.count('\n') + 1
     bl = [l for l in body.split('\n') if l] if body else []
     bf = font(BODY, 44)
-    total = tf.size * 1.35 * n + (40 + bf.size * 1.5 * len(bl) if bl else 0)
+    total = tf.size * 1.35 * n + (40 * K + bf.size * 1.5 * len(bl) if bl else 0)
     y = (H - total) / 2
     y = centered(d, y, title, tf, GOLD if big else FG)
     if bl:
-        y += 40
+        y += 40 * K
         for line in bl:
             tw = d.textlength(line, font=bf); d.text(((W - tw) / 2, y), line, font=bf, fill=DIM); y += bf.size * 1.5
     return im
@@ -76,30 +78,31 @@ def card(title, body):
 def placeholder(desc, bgpath):
     im = fit(Image.open(os.path.join(REPO, bgpath)).convert('RGB'), W, H, cover=True)
     im = im.crop(((im.width - W) // 2, (im.height - H) // 2, (im.width - W) // 2 + W, (im.height - H) // 2 + H))
-    im = ImageEnhance.Brightness(im.filter(ImageFilter.GaussianBlur(6))).enhance(0.35)
+    im = ImageEnhance.Brightness(im.filter(ImageFilter.GaussianBlur(6 * K))).enhance(0.35)
     d = ImageDraw.Draw(im)
-    x0, y0, x1, y1 = 360, 300, W - 360, H - 300
-    for i in range(x0, x1, 40): d.line([(i, y0), (min(i + 22, x1), y0)], fill=ORANGE, width=5); d.line([(i, y1), (min(i + 22, x1), y1)], fill=ORANGE, width=5)
-    for j in range(y0, y1, 40): d.line([(x0, j), (x0, min(j + 22, y1))], fill=ORANGE, width=5); d.line([(x1, j), (x1, min(j + 22, y1))], fill=ORANGE, width=5)
-    y = centered(d, y0 + 110, 'YOUR FOOTAGE HERE', font(BODY.replace('ui', 'uib'), 64), ORANGE)
+    x0, y0, x1, y1 = 360 * K, 300 * K, W - 360 * K, H - 300 * K
+    st, dl, lw = 40 * K, 22 * K, 5 * K
+    for i in range(x0, x1, st): d.line([(i, y0), (min(i + dl, x1), y0)], fill=ORANGE, width=lw); d.line([(i, y1), (min(i + dl, x1), y1)], fill=ORANGE, width=lw)
+    for j in range(y0, y1, st): d.line([(x0, j), (x0, min(j + dl, y1))], fill=ORANGE, width=lw); d.line([(x1, j), (x1, min(j + dl, y1))], fill=ORANGE, width=lw)
+    y = centered(d, y0 + 110 * K, 'YOUR FOOTAGE HERE', font(BODY.replace('ui', 'uib'), 64), ORANGE)
     lines = textwrap.wrap(desc, 48)
-    centered(d, y + 30, '\n'.join(lines), font(BODY, 44), FG)
+    centered(d, y + 30 * K, '\n'.join(lines), font(BODY, 44), FG)
     return im
 
 def cardimg(title, body, bgpath):
     im = fit(Image.open(os.path.join(REPO, bgpath)).convert('RGB'), W, H, cover=True)
     im = im.crop(((im.width - W) // 2, (im.height - H) // 2, (im.width - W) // 2 + W, (im.height - H) // 2 + H))
-    im = ImageEnhance.Brightness(im.filter(ImageFilter.GaussianBlur(3))).enhance(0.32)
+    im = ImageEnhance.Brightness(im.filter(ImageFilter.GaussianBlur(3 * K))).enhance(0.32)
     d = ImageDraw.Draw(im)
-    y = centered(d, 430, title, font(TITLE, 72), FG)
-    centered(d, y + 30, body, font(BODY, 44), GOLD)
+    y = centered(d, 430 * K, title, font(TITLE, 72), FG)
+    centered(d, y + 30 * K, body, font(BODY, 44), GOLD)
     return im
 
 def scroll_canvas(path):
     """폴더 목록 캡처: 목록 부분만 잘라 키우고, 세로로 긴 그림을 만듦 (assemble에서 위→아래 스크롤)"""
     im = Image.open(os.path.join(REPO, path)).convert('RGB')
     im = im.crop((0, 0, 760, im.height))
-    w = 1240; im = im.resize((w, round(im.height * w / im.width)), Image.LANCZOS)
+    w = 1240 * K; im = im.resize((w, round(im.height * w / im.width)), Image.LANCZOS)
     canvas = Image.new('RGB', (W, max(im.height, H)), (42, 42, 42))
     canvas.paste(im, ((W - w) // 2, 0))
     return canvas
@@ -108,12 +111,12 @@ def video_bg(label):
     im = bg_gradient(); d = ImageDraw.Draw(im)
     if label:
         f = font(TITLE, 54); tw = d.textlength(label, font=f)
-        d.text(((W - tw) / 2, 50), label, font=f, fill=GOLD)
+        d.text(((W - tw) / 2, 50 * K), label, font=f, fill=GOLD)
     return im
 
 # ---------- matplotlib 도식 ----------
 def mpl_fig():
-    fig = plt.figure(figsize=(19.2, 10.8), dpi=100, facecolor=np.array(BG) / 255)
+    fig = plt.figure(figsize=(19.2, 10.8), dpi=100 * K, facecolor=np.array(BG) / 255)
     ax = fig.add_axes([0, 0, 1, 1]); ax.set_xlim(0, 192); ax.set_ylim(0, 108); ax.axis('off')
     return fig, ax
 
@@ -185,7 +188,7 @@ def gen_review(path):
     save_fig(fig, path)
 
 def gen_shadow(path):
-    fig = plt.figure(figsize=(19.2, 10.8), dpi=100, facecolor=np.array(BG) / 255)
+    fig = plt.figure(figsize=(19.2, 10.8), dpi=100 * K, facecolor=np.array(BG) / 255)
     ax = fig.add_axes([0, 0, 1, 1]); ax.set_aspect('equal'); ax.axis('off')
     R = 6371.0
     ax.set_xlim(-11000, 13500); ax.set_ylim(-1500, 12300)
@@ -220,14 +223,14 @@ def quote_frames(lines, bgpath, i):
     paths = []
     for step, upto in enumerate(shown):
         im = base.copy(); d = ImageDraw.Draw(im)
-        y = 170
+        y = 170 * K
         for k, l in enumerate(lines):
-            if not l: y += 40; continue
+            if not l: y += 40 * K; continue
             f = font('georgiai.ttf' if k == len(lines) - 1 else TITLE, 44 if k == len(lines) - 1 else 52)
             if k <= upto:
                 tw = d.textlength(l, font=f)
                 d.text(((W - tw) / 2, y), ('—  ' + l) if k == len(lines) - 1 else l, font=f, fill=GOLD if k == len(lines) - 1 else FG)
-            y += 82
+            y += 82 * K
         p = os.path.join(OUT, f'{i:02d}_q{step}.png'); im.save(p); paths.append(p)
     return paths
 
@@ -264,6 +267,6 @@ for i, (sec, vis, lines) in enumerate(SCENES):
     elif kind == 'skip':
         pass
     elif kind == 'motion':
-        item['motion'] = os.path.join(HERE, 'out', 'motion', f'{i:02d}.mp4')
+        item['motion'] = os.path.join(HERE, 'out', 'motion' + SUF, f'{i:02d}.mp4')
     manifest.append(item); print(i, kind, flush=True)
 json.dump(manifest, open(os.path.join(OUT, 'manifest.json'), 'w', encoding='utf-8'), indent=1)
